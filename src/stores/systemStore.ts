@@ -25,7 +25,7 @@ interface SystemStore {
 }
 
 const defaultSettings: SystemSettings = {
-  wallpaper: 'mountain',
+  wallpaper: 'nero',
   accentColor: 'brass',
   soundEnabled: true,
   volume: 0.5,

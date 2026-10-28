@@ -2,7 +2,7 @@ import { LucideIcon } from 'lucide-react';
 
 // System States
 export type SystemState = 'booting' | 'login' | 'desktop';
-export type WallpaperType = 'mountain' | 'cosmos' | 'voyage';
+export type WallpaperType = 'mountain' | 'cosmos' | 'voyage' | 'nero';
 
 // User
 export interface User {

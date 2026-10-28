@@ -4,6 +4,7 @@ import { useSystemStore } from '@/stores/systemStore';
 import { Dock } from './Dock';
 import { TopBar } from './TopBar';
 import { WindowManager } from './WindowManager';
+import { NeroWallpaper } from './NeroWallpaper';
 
 // Accent color mappings to HSL values
 const accentColorMap: Record<string, { primary: string; ring: string; dockIndicator: string; sidebarPrimary: string; sidebarRing: string }> = {
@@ -98,12 +99,20 @@ export function Desktop() {
 
   return (
     <motion.div
-      className="fixed inset-0 overflow-hidden bg-cover bg-center"
-      style={{ backgroundImage: `url(${getWallpaperUrl()})` }}
+      className="fixed inset-0 overflow-hidden"
       initial={{ opacity: 0, scale: 1.05 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6 }}
     >
+      {settings.wallpaper === 'nero' ? (
+        <NeroWallpaper />
+      ) : (
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${getWallpaperUrl()})` }}
+        />
+      )}
+
       <TopBar />
 
       <div className="absolute inset-0 pt-7">

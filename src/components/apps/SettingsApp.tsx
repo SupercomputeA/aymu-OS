@@ -33,10 +33,11 @@ const sections = [
   { id: 'about', label: 'About', icon: Info },
 ];
 
-const wallpapers: { id: WallpaperType; label: string; preview: string }[] = [
+const wallpapers: { id: WallpaperType; label: string; preview: string; shader?: boolean }[] = [
   { id: 'mountain', label: 'Mountain', preview: '/wallpapers/mountain.jpg' },
   { id: 'cosmos', label: 'Cosmos', preview: '/wallpapers/cosmos.jpg' },
   { id: 'voyage', label: 'Voyage', preview: '/wallpapers/voyage.jpg' },
+  { id: 'nero', label: 'Nero', preview: '', shader: true },
 ];
 
 const accentColors = [
@@ -84,11 +85,18 @@ export function SettingsApp({ windowId }: SettingsAppProps) {
                         }`}
                       onClick={() => updateSettings({ wallpaper: wp.id })}
                     >
-                      <img
-                        src={wp.preview}
-                        alt={wp.label}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
+                      {wp.shader ? (
+                        <div
+                          className="absolute inset-0"
+                          style={{ background: 'linear-gradient(135deg, #0a1330 0%, #0d1f3d 50%, #c9a33a 100%)' }}
+                        />
+                      ) : (
+                        <img
+                          src={wp.preview}
+                          alt={wp.label}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                      )}
                       <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-xs text-foreground bg-background/50 px-2 rounded">
                         {settings.wallpaper === wp.id ? 'ACTIVE' : wp.label}
                       </span>
