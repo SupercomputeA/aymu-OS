@@ -1,5 +1,5 @@
 {
-  "_comment": "These files from /src/static/* would be used as seed files for aymuOS, and would be placed in the aymu file system",
+  "_comment": "These files from /src/static/* would be used as seed files for Immersion, and would be placed in the Immersion file system",
   "markdowns": [
     {
       "id": "1",
@@ -12,7 +12,7 @@
   "images": [
     {
       "id": "1",
-      "name": "aymuOS Preview",
+      "name": "Immersion Preview",
       "path": "./images/aymuos-preview.png",
       "tags": ["os", "preview", "screenshot"],
       "location": "/home/Pictures/aymuos-preview.png"

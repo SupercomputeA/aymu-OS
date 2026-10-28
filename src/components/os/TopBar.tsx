@@ -139,7 +139,7 @@ export function TopBar() {
   return (
     <div className="top-bar fixed top-0 left-0 right-0 h-7 z-50 flex items-center justify-between px-4 text-sm select-none">
       <div className="flex items-center gap-[2px]" ref={menuRef}>
-        <img src="/icons/aymuos.png" alt="aymuOS" className="drag-none h-4" draggable="false" />
+        <img src="/icons/aymuos.png" alt="Immersion" className="drag-none h-4" draggable="false" />
         {/* Menus */}
         {menus.map((menu) => (
           <div key={menu.label} className="relative">
@@ -221,7 +221,7 @@ export function TopBar() {
         </div>
 
         <a
-          href="https://github.com/indgeek/aymu-os"
+          href="https://github.com/SupercomputeA/aymu-OS"
           target="_blank"
           rel="noopener noreferrer"
           className="p-1 hover:bg-muted/30 rounded transition-colors"

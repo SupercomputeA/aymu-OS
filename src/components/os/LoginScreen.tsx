@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Orbit } from 'lucide-react';
 import { useSystemStore, defaultUsers } from '@/stores/systemStore';
 import { soundManager } from '@/lib/sounds';
 import type { User } from '@/types/os';
@@ -35,12 +34,12 @@ export function LoginScreen() {
         transition={{ delay: 0.2, duration: 0.6 }}
       >
         <motion.div
-          className="w-24 h-24 flex items-center justify-center mb-8"
+          className="mb-8"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          <img src="/icons/aymuos.png" alt="AYMUOS" className="w-full h-full object-contain" />
+          <div className="vault-monogram">I</div>
         </motion.div>
 
         <motion.div
@@ -50,11 +49,11 @@ export function LoginScreen() {
           transition={{ delay: 0.4, duration: 0.5 }}
         >
           <h1 className="text-5xl font-light tracking-wider mb-2">
-            <span className="font-semibold">AYMU</span>
+            <span className="font-semibold">IMMERSION</span>
             <span className="text-muted-foreground ml-2">OS</span>
           </h1>
           <p className="text-sm text-muted-foreground tracking-[0.3em] uppercase">
-            The Open source Operating System for the web
+            The sovereign Web3 desktop
           </p>
         </motion.div>
 
@@ -64,7 +63,7 @@ export function LoginScreen() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          Select User
+          Select Identity
         </motion.p>
 
         <motion.div
@@ -104,10 +103,10 @@ export function LoginScreen() {
       >
         <div className="flex items-center gap-4 text-xs text-muted-foreground">
           <span className="px-2 py-1 rounded-full border border-border/50">
-            ⚙ Original Distribution
+            ⚙ fork of aymu-OS · Apache-2.0
           </span>
           <span className="px-2 py-1 rounded-full border border-primary/50 text-primary">
-            ❤ AymuOS v0.1.0
+            ◈ Immersion OS v0.2.0
           </span>
         </div>
       </motion.div>

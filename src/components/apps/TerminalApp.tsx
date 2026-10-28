@@ -24,7 +24,7 @@ export function TerminalApp({ windowId }: TerminalAppProps) {
   const openWindow = useWindowStore((state) => state.openWindow);
 
   const [lines, setLines] = useState<TerminalLine[]>([
-    { type: 'output', content: 'AymuOS terminal [v0.1.0]' },
+    { type: 'output', content: 'Immersion OS terminal [v0.2.0]' },
     { type: 'output', content: '' },
   ]);
   const [currentInput, setCurrentInput] = useState('');
@@ -35,7 +35,7 @@ export function TerminalApp({ windowId }: TerminalAppProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const prompt = `${currentUser?.username || 'user'}@aymu:${currentDir}$`;
+  const prompt = `${currentUser?.username || 'user'}@immersion:${currentDir}$`;
 
   useEffect(() => {
     scrollRef.current?.scrollTo(0, scrollRef.current.scrollHeight);
@@ -219,15 +219,15 @@ export function TerminalApp({ windowId }: TerminalAppProps) {
         ];
 
         const sysInfo = [
-          'OS: AymuOS v0.1.0',
+          'OS: Immersion OS v0.2.0',
           'Host: Browser Runtime',
           'Kernel: Web Engine',
           `Uptime: ${Math.floor(performance.now() / 1000)}s`,
-          'Shell: aymu-sh 1.0',
+          'Shell: immersion-sh 1.0',
           `Resolution: ${window.innerWidth}x${window.innerHeight}`,
-          'DE: AymuDE',
-          'WM: AymuWM',
-          'Terminal: AymuTerm',
+          'DE: ImmersionDE',
+          'WM: VaultWM',
+          'Terminal: VaultTerm',
           `CPU: ${navigator.hardwareConcurrency || 4} cores`,
           'Memory: Unlimited (Browser)'
         ];
@@ -285,9 +285,9 @@ export function TerminalApp({ windowId }: TerminalAppProps) {
 
       case 'uname':
         if (args.includes('-a')) {
-          addOutput('AymuOS WebKernel 1.0 Browser Runtime x86_64');
+          addOutput('Immersion OS WebKernel 1.0 Browser Runtime x86_64');
         } else {
-          addOutput('AymuOS');
+          addOutput('Immersion OS');
         }
         break;
 

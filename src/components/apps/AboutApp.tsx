@@ -12,13 +12,13 @@ export function AboutApp({ windowId }: AboutAppProps) {
       </div>
 
       <h1 className="text-3xl font-light mb-1">
-        <span className="font-semibold">AymuOS</span>
+        <span className="font-semibold">Immersion OS</span>
       </h1>
-      <p className="text-muted-foreground mb-6">Version 0.1.0</p>
+      <p className="text-muted-foreground mb-6">Version 0.2.0</p>
 
       <div className="glass-panel p-6 max-w-md space-y-4 text-sm">
         <p>
-          A browser-based operating system experience built with modern web technologies.
+          The sovereign Web3 desktop — an on-chain operating system experience.
         </p>
 
         <div className="border-t border-border pt-4 space-y-2">
@@ -46,7 +46,7 @@ export function AboutApp({ windowId }: AboutAppProps) {
       </div>
 
       <p className="mt-8 text-xs text-muted-foreground">
-        Made with ❤️ in India
+        SUPERCOMPUTE · fork of aymu-OS
       </p>
     </div>
   );

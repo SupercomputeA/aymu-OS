@@ -7,6 +7,13 @@ import { WindowManager } from './WindowManager';
 
 // Accent color mappings to HSL values
 const accentColorMap: Record<string, { primary: string; ring: string; dockIndicator: string; sidebarPrimary: string; sidebarRing: string }> = {
+  brass: {
+    primary: '40 45% 52%',
+    ring: '40 45% 52%',
+    dockIndicator: '40 50% 54%',
+    sidebarPrimary: '40 45% 52%',
+    sidebarRing: '40 45% 52%',
+  },
   indigo: {
     primary: '230 85% 55%',
     ring: '230 85% 55%',
@@ -64,9 +71,9 @@ export function Desktop() {
 
   // Apply accent color to CSS variables
   useEffect(() => {
-    const accentColor = accentColorMap[settings.accentColor] || accentColorMap.indigo;
+    const accentColor = accentColorMap[settings.accentColor] || accentColorMap.brass;
     const root = document.documentElement;
-    
+
     root.style.setProperty('--primary', accentColor.primary);
     root.style.setProperty('--ring', accentColor.ring);
     root.style.setProperty('--dock-indicator', accentColor.dockIndicator);

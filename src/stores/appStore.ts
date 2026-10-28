@@ -242,7 +242,7 @@ export const useAppStore = create<AppStore>()(
       },
     }),
     {
-      name: 'aymu-os-apps',
+      name: 'immersion-os-apps',
       partialize: (state) => ({
         installedAppIds: state.installedAppIds,
         pinnedAppIds: state.pinnedAppIds,

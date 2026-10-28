@@ -26,14 +26,14 @@ interface SystemStore {
 
 const defaultSettings: SystemSettings = {
   wallpaper: 'mountain',
-  accentColor: 'amber',
+  accentColor: 'brass',
   soundEnabled: true,
   volume: 0.5,
   developerMode: false,
 };
 
 const defaultUsers: User[] = [
-  { id: 'user', name: 'User', username: 'user' },
+  { id: 'operator', name: 'Operator', username: 'operator' },
   { id: 'guest', name: 'Guest', username: 'guest' },
 ];
 
@@ -59,7 +59,7 @@ export const useSystemStore = create<SystemStore>()(
       updateTime: () => set({ currentTime: new Date() }),
     }),
     {
-      name: 'aymu-os-system',
+      name: 'immersion-os-system',
       partialize: (state) => ({ settings: state.settings }),
     }
   )

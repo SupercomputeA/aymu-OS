@@ -40,6 +40,7 @@ const wallpapers: { id: WallpaperType; label: string; preview: string }[] = [
 ];
 
 const accentColors = [
+  { id: 'brass', color: 'bg-[#b58a4f]' },
   { id: 'indigo', color: 'bg-indigo-500' },
   { id: 'cyan', color: 'bg-cyan-500' },
   { id: 'orange', color: 'bg-orange-500' },
@@ -153,19 +154,19 @@ export function SettingsApp({ windowId }: SettingsAppProps) {
 
             <div className="glass-panel p-6 space-y-4">
               <div className="flex items-center gap-4">
-                <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center">
-                  <img src="/icons/aymuos.png" alt="AymuOS" className="w-16 h-16 object-cover" />
+                <div className="w-20 h-20 rounded-2xl flex items-center justify-center vault-monogram !w-20 !h-20 !text-2xl">
+                  I
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold">AymuOS</h3>
-                  <p className="text-muted-foreground">Version 0.1.0</p>
+                  <h3 className="text-2xl font-semibold">Immersion OS</h3>
+                  <p className="text-muted-foreground">Version 0.2.0</p>
                 </div>
               </div>
 
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between py-2 border-b border-border/50">
                   <span className="text-muted-foreground">System</span>
-                  <span>AymuOS v0.1.0</span>
+                  <span>Immersion OS v0.2.0</span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-border/50">
                   <span className="text-muted-foreground">Kernel</span>
@@ -173,11 +174,11 @@ export function SettingsApp({ windowId }: SettingsAppProps) {
                 </div>
                 <div className="flex justify-between py-2 border-b border-border/50">
                   <span className="text-muted-foreground">Desktop</span>
-                  <span>AymuDE 1.0</span>
+                  <span>ImmersionDE 1.0</span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-border/50">
                   <span className="text-muted-foreground">Display Server</span>
-                  <span>AymuWM (Wayland-inspired)</span>
+                  <span>VaultWM (Wayland-inspired)</span>
                 </div>
                 <div className="flex justify-between py-2">
                   <span className="text-muted-foreground">Memory used</span>
@@ -189,7 +190,7 @@ export function SettingsApp({ windowId }: SettingsAppProps) {
             </div>
 
             <p className="text-xs text-muted-foreground text-center">
-              Made with ❤️ in India • Built with React & TypeScript
+              SUPERCOMPUTE · fork of aymu-OS · React & TypeScript
             </p>
           </div>
         );

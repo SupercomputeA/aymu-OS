@@ -2,83 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-/* AymuOS Design System */
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* AymuOS Design System */
+/* Immersion OS Design System — steel vault, locked navy/brass palette */
 
 @layer base {
   :root {
-    /* Core Colors - Neutral Dark Theme */
-    --background: 0 0% 8%;
-    --foreground: 0 0% 96%;
+    /* Core Colors — deep navy, near-black */
+    --background: 222 45% 5%;
+    --foreground: 40 20% 90%;
 
-    /* Glass Surfaces */
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 96%;
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 96%;
+    /* Steel Surfaces */
+    --card: 222 28% 9%;
+    --card-foreground: 40 20% 90%;
+    --popover: 222 26% 7%;
+    --popover-foreground: 40 20% 90%;
 
-    /* Brand Colors */
-    --primary: 190 85% 55%;
-    --primary-foreground: 0 0% 8%;
+    /* Brand — brass */
+    --primary: 40 45% 52%;
+    --primary-foreground: 222 45% 8%;
 
-    /* Secondary */
-    --secondary: 280 70% 60%;
-    --secondary-foreground: 0 0% 98%;
+    /* Secondary — steel */
+    --secondary: 217 18% 24%;
+    --secondary-foreground: 40 20% 90%;
 
     /* UI States */
-    --muted: 0 0% 17%;
-    --muted-foreground: 0 0% 55%;
-    --accent: 190 80% 45%;
-    --accent-foreground: 0 0% 98%;
+    --muted: 222 18% 14%;
+    --muted-foreground: 40 10% 54%;
+    --accent: 40 45% 52%;
+    --accent-foreground: 222 45% 8%;
 
     /* Danger */
-    --destructive: 0 72% 55%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 40 20% 90%;
 
     /* Borders & Inputs */
-    --border: 0 0% 22%;
-    --input: 0 0% 17%;
-    --ring: 190 85% 55%;
-    --radius: 0.75rem;
+    --border: 222 22% 17%;
+    --input: 222 20% 13%;
+    --ring: 40 45% 52%;
+    --radius: 0.5rem;
 
     /* Window Traffic Lights */
     --traffic-red: 0 85% 60%;
     --traffic-yellow: 45 95% 55%;
     --traffic-green: 140 70% 45%;
 
-    /* Terminal Colors */
-    --terminal-bg: 0 0% 10%;
-    --terminal-cyan: 185 90% 60%;
-    --terminal-magenta: 300 80% 65%;
-    --terminal-green: 140 70% 55%;
-    --terminal-yellow: 45 90% 60%;
-    --terminal-red: 0 80% 60%;
-    --terminal-white: 0 0% 90%;
+    /* Terminal Colors — brass phosphor on navy */
+    --terminal-bg: 222 30% 6%;
+    --terminal-cyan: 40 55% 56%;
+    --terminal-magenta: 300 40% 58%;
+    --terminal-green: 140 40% 46%;
+    --terminal-yellow: 45 85% 55%;
+    --terminal-red: 0 68% 55%;
+    --terminal-white: 40 20% 88%;
 
-    /* Glassmorphism */
-    --glass-bg: 0 0% 14% / 0.75;
-    --glass-border: 0 0% 32% / 0.3;
-    --glass-shadow: 0 0% 5%;
-    
+    /* Steel (was glass) */
+    --glass-bg: 222 26% 12% / 0.88;
+    --glass-border: 40 25% 38% / 0.22;
+    --glass-shadow: 222 40% 3%;
+
     /* Dock */
-    --dock-bg: 0 0% 12% / 0.85;
-    --dock-item-hover: 0 0% 22% / 0.6;
-    --dock-indicator: 190 85% 55%;
+    --dock-bg: 222 26% 9% / 0.9;
+    --dock-item-hover: 222 20% 19% / 0.7;
+    --dock-indicator: 40 50% 54%;
 
     /* Sidebar */
-    --sidebar-background: 0 0% 10%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 190 85% 55%;
-    --sidebar-primary-foreground: 0 0% 8%;
-    --sidebar-accent: 0 0% 20%;
-    --sidebar-accent-foreground: 0 0% 96%;
-    --sidebar-border: 0 0% 22%;
-    --sidebar-ring: 190 85% 55%;
+    --sidebar-background: 222 28% 7%;
+    --sidebar-foreground: 40 20% 88%;
+    --sidebar-primary: 40 45% 52%;
+    --sidebar-primary-foreground: 222 45% 8%;
+    --sidebar-accent: 222 20% 15%;
+    --sidebar-accent-foreground: 40 20% 90%;
+    --sidebar-border: 222 22% 17%;
+    --sidebar-ring: 40 45% 52%;
   }
 }
 
@@ -116,25 +110,25 @@
 }
 
 @layer components {
-  /* Glass Panel */
+  /* Steel Panel */
   .glass-panel {
-    @apply bg-[hsl(var(--glass-bg))] backdrop-blur-xl border border-[hsl(var(--glass-border))] rounded-xl;
-    box-shadow: 
+    @apply bg-[hsl(var(--glass-bg))] backdrop-blur-md border border-[hsl(var(--glass-border))] rounded-xl;
+    box-shadow:
       0 8px 32px -8px hsl(var(--glass-shadow)),
-      inset 0 1px 0 0 hsl(0 0% 32% / 0.1);
+      inset 0 1px 0 0 hsl(40 25% 45% / 0.08);
   }
 
   /* Window Frame */
   .window-frame {
     @apply glass-panel overflow-hidden;
-    box-shadow: 
+    box-shadow:
       0 25px 50px -12px hsl(var(--glass-shadow)),
       0 0 0 1px hsl(var(--glass-border));
   }
 
   /* Dock */
   .dock {
-    @apply bg-[hsl(var(--dock-bg))] backdrop-blur-2xl border border-[hsl(var(--glass-border))] rounded-2xl;
+    @apply bg-[hsl(var(--dock-bg))] backdrop-blur-md border border-[hsl(var(--glass-border))] rounded-2xl;
   }
 
   .dock-item {
@@ -152,7 +146,7 @@
 
   /* Top Bar */
   .top-bar {
-    @apply bg-[hsl(var(--glass-bg))] backdrop-blur-2xl border-b border-[hsl(var(--glass-border))];
+    @apply bg-[hsl(var(--glass-bg))] backdrop-blur-md border-b border-[hsl(var(--glass-border))];
   }
 
   /* Menu */
@@ -217,7 +211,7 @@
   }
 
   .user-card:hover {
-    @apply bg-[hsl(0_0%_17%_/_0.8)] scale-[1.02] border-[hsl(var(--primary)_/_0.5)];
+    @apply bg-[hsl(222_20%_16%_/_0.85)] scale-[1.02] border-[hsl(var(--primary)_/_0.5)];
   }
 
   /* App Icon */
@@ -249,29 +243,29 @@
 }
 
 @layer utilities {
-  /* Gradient backgrounds */
+  /* Gradient backgrounds — navy-tinted */
   .bg-aurora {
-    background: 
-      radial-gradient(ellipse 80% 50% at 50% -20%, hsl(0 0% 20% / 0.3), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 60%, hsl(0 0% 18% / 0.25), transparent),
-      radial-gradient(ellipse 70% 50% at 20% 80%, hsl(0 0% 15% / 0.2), transparent),
-      linear-gradient(180deg, hsl(0 0% 10%) 0%, hsl(0 0% 6%) 100%);
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, hsl(222 30% 16% / 0.5), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 60%, hsl(222 30% 14% / 0.4), transparent),
+      radial-gradient(ellipse 70% 50% at 20% 80%, hsl(40 30% 12% / 0.25), transparent),
+      linear-gradient(180deg, hsl(222 30% 8%) 0%, hsl(222 45% 5%) 100%);
   }
 
   .bg-nebula {
-    background: 
-      radial-gradient(ellipse 100% 100% at 30% 20%, hsl(0 0% 20% / 0.4), transparent),
-      radial-gradient(ellipse 80% 80% at 70% 60%, hsl(0 0% 15% / 0.35), transparent),
-      radial-gradient(ellipse 60% 60% at 50% 100%, hsl(0 0% 12% / 0.3), transparent),
-      hsl(0 0% 8%);
+    background:
+      radial-gradient(ellipse 100% 100% at 30% 20%, hsl(222 30% 16% / 0.5), transparent),
+      radial-gradient(ellipse 80% 80% at 70% 60%, hsl(222 30% 12% / 0.45), transparent),
+      radial-gradient(ellipse 60% 60% at 50% 100%, hsl(222 35% 9% / 0.4), transparent),
+      hsl(222 45% 5%);
   }
 
   .bg-orbit {
-    background: 
-      radial-gradient(ellipse 120% 80% at 50% 50%, hsl(0 0% 18% / 0.2), transparent),
-      radial-gradient(ellipse 80% 120% at 30% 70%, hsl(0 0% 16% / 0.25), transparent),
-      conic-gradient(from 180deg at 50% 50%, hsl(0 0% 8%), hsl(0 0% 12%), hsl(0 0% 8%)),
-      hsl(0 0% 8%);
+    background:
+      radial-gradient(ellipse 120% 80% at 50% 50%, hsl(222 30% 14% / 0.3), transparent),
+      radial-gradient(ellipse 80% 120% at 30% 70%, hsl(222 30% 12% / 0.35), transparent),
+      conic-gradient(from 180deg at 50% 50%, hsl(222 45% 5%), hsl(222 30% 10%), hsl(222 45% 5%)),
+      hsl(222 45% 5%);
   }
 
   /* Text gradients */
@@ -320,6 +314,43 @@
   .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }
+}
+
+/* Vault monogram — brass glyph on steel (login mark) */
+.vault-monogram {
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 2.25rem;
+  letter-spacing: 0.05em;
+  color: hsl(var(--primary));
+  border: 1px solid hsl(var(--primary) / 0.4);
+  border-radius: 0.75rem;
+  background: linear-gradient(160deg, hsl(222 26% 14% / 0.92), hsl(222 30% 8% / 0.92));
+  box-shadow: 0 0 30px hsl(var(--primary) / 0.15), inset 0 1px 0 hsl(40 30% 60% / 0.1);
+}
+
+/* CRT overlay — pure CSS scanlines + vignette (60fps, zero canvas) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.38) 100%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.10) 0px,
+      rgba(0, 0, 0, 0.10) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  opacity: 0.55;
 }
 
 .drag-none {

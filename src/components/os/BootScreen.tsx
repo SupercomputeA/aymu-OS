@@ -12,7 +12,7 @@ const WALLPAPER_URLS = [
 ];
 
 const bootLogs: BootLogEntry[] = [
-  { text: '[    0.000000] AymuOS kernel 6.2.0 loading...', color: 'white', delay: 10 },
+  { text: '[    0.000000] Immersion kernel 6.2.0 loading...', color: 'white', delay: 10 },
   { text: '[    0.012543] BIOS-provided memory map:', color: 'cyan', delay: 8 },
   { text: '[    0.024891] ACPI: RSDP 0x00000000000F0490', color: 'white', delay: 6 },
   { text: '[    0.036712] Detected 8192 MB RAM', color: 'green', delay: 10 },
@@ -20,11 +20,11 @@ const bootLogs: BootLogEntry[] = [
   { text: '[    0.059876] GPU: Integrated Graphics 4K', color: 'cyan', delay: 10 },
   { text: '[    0.071234] Initializing virtual memory subsystem...', color: 'white', delay: 12 },
   { text: '[    0.083456] Memory zones initialized', color: 'green', delay: 6 },
-  { text: '[    0.095678] Security: AppArmor initialized', color: 'magenta', delay: 10 },
-  { text: '[    0.107890] Mounting root filesystem...', color: 'white', delay: 15 },
-  { text: '[    0.120123] EXT4-fs mounted on /', color: 'green', delay: 8 },
-  { text: '[    0.132345] Starting systemd v254...', color: 'cyan', delay: 10 },
-  { text: '[    0.144567] systemd: Detected architecture x86-64', color: 'white', delay: 6 },
+  { text: '[    0.095678] Security: sovereignty modules...', color: 'magenta', delay: 10 },
+  { text: '[    0.107890] ENS resolver loaded... standby', color: 'white', delay: 15 },
+  { text: '[    0.120123] EAS attestation client... idle', color: 'green', delay: 8 },
+  { text: '[    0.132345] Charter gate... sealed', color: 'cyan', delay: 10 },
+  { text: '[    0.144567] Starting systemd v254...', color: 'white', delay: 6 },
   { text: '[    0.156789] Starting device manager...', color: 'white', delay: 8 },
   { text: '[    0.169012] udev: Starting version 254', color: 'cyan', delay: 10 },
   { text: '[    0.181234] Loading network drivers...', color: 'white', delay: 12 },
@@ -34,12 +34,12 @@ const bootLogs: BootLogEntry[] = [
   { text: '[    0.230123] Wayland compositor initialized', color: 'cyan', delay: 10 },
   { text: '[    0.242345] Audio: PulseAudio starting...', color: 'white', delay: 8 },
   { text: '[    0.254567] Audio: Device initialized successfully', color: 'green', delay: 6 },
-  { text: '[    0.266789] Starting AymuOS services...', color: 'magenta', delay: 12 },
+  { text: '[    0.266789] Starting Immersion services...', color: 'magenta', delay: 12 },
   { text: '[    0.279012] Package manager initialized', color: 'green', delay: 8 },
   { text: '[    0.291234] System integrity check... PASSED', color: 'green', delay: 15 },
   { text: '[    0.303456] Network ping: 8ms latency', color: 'green', delay: 10 },
   { text: '', color: 'white', delay: 20 },
-  { text: 'AymuOS terminal [v0.1.0]', color: 'cyan', delay: 15 },
+  { text: 'Immersion terminal [v0.2.0]', color: 'cyan', delay: 15 },
   { text: 'System Ready.', color: 'green', delay: 20 },
 ];
 

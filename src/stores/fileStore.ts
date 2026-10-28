@@ -46,7 +46,7 @@ const baseFileSystem: FileSystemNode[] = [
     type: 'file',
     path: '/home/Desktop/README.txt',
     parentId: 'desktop',
-    content: 'Welcome to AymuOS!\n\nThis is your personal desktop operating system running entirely in your browser.\n\nExplore the apps, customize your settings, and enjoy!',
+    content: 'Welcome to Immersion OS!\n\nThis is your personal desktop operating system running entirely in your browser.\n\nExplore the apps, customize your settings, and enjoy!',
     createdAt: new Date(),
     modifiedAt: new Date()
   },
@@ -66,7 +66,7 @@ const baseFileSystem: FileSystemNode[] = [
     type: 'file',
     path: '/etc/os-release',
     parentId: 'etc',
-    content: 'NAME="AymuOS"\nVERSION="0.1.0"\nID=aymu-os\nPRETTY_NAME="AymuOS"',
+    content: 'NAME="Immersion OS"\nVERSION="0.2.0"\nID=immersion-os\nPRETTY_NAME="Immersion OS"',
     createdAt: new Date(),
     modifiedAt: new Date()
   },
@@ -252,7 +252,7 @@ export const useFileStore = create<FileStore>()(
       },
     }),
     {
-      name: 'aymu-os-files',
+      name: 'immersion-os-files',
     }
   )
 );

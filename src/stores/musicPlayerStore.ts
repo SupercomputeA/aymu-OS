@@ -95,7 +95,7 @@ export const useMusicPlayerStore = create<MusicPlayerStore>()(
       },
     }),
     {
-      name: 'aymu-os-music-player',
+      name: 'immersion-os-music-player',
       partialize: (state) => ({ 
         volume: state.volume,
         recentlyPlayed: state.recentlyPlayed,
