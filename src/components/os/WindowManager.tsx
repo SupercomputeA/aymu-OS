@@ -14,6 +14,15 @@ import { MusicPlayerApp } from '../apps/MusicPlayerApp';
 import { BrowserApp } from '../apps/BrowserApp';
 import { PhotopeaApp } from '../apps/PhotopeaApp';
 import { ExcalidrawApp } from '../apps/ExcalidrawApp';
+import {
+  EmbassyApp,
+  NewsDeskApp,
+  TradeDeskApp,
+  SchoolApp,
+  LexApp,
+  AgentOpsApp,
+  SkinBuilderApp,
+} from '../apps/ImmersionApplets';
 
 const appComponents: Record<string, React.ComponentType<{ windowId: string; fileId?: string }>> = {
   finder: FinderApp,
@@ -29,6 +38,13 @@ const appComponents: Record<string, React.ComponentType<{ windowId: string; file
   browser: BrowserApp,
   photopea: PhotopeaApp,
   excalidraw: ExcalidrawApp,
+  embassy: EmbassyApp,
+  newsdesk: NewsDeskApp,
+  tradedesk: TradeDeskApp,
+  school: SchoolApp,
+  lex: LexApp,
+  agents: AgentOpsApp,
+  'skin-builder': SkinBuilderApp,
 };
 
 export function WindowManager() {

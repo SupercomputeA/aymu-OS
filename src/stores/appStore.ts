@@ -16,6 +16,13 @@ import {
   Music,
   MessageSquare,
   PencilRuler,
+  Landmark,
+  Newspaper,
+  TrendingUp,
+  GraduationCap,
+  BookOpen,
+  Bot,
+  Palette,
 } from 'lucide-react';
 import type { AppDefinition, AppCategory } from '@/types/os';
 import { AppIcons } from '@/icons/app-icon';
@@ -41,6 +48,76 @@ interface AppStore {
 }
 
 const defaultApps: Omit<AppDefinition, 'component'>[] = [
+  {
+    id: 'embassy',
+    name: 'Embassy',
+    icon: Landmark,
+    iconBg: 'bg-gradient-to-br from-amber-500 via-amber-700 to-zinc-800',
+    category: 'system',
+    description: 'Sovereign identity & presence',
+    isSystemApp: true,
+    isInstalled: true,
+  },
+  {
+    id: 'newsdesk',
+    name: 'News Desk',
+    icon: Newspaper,
+    iconBg: 'bg-gradient-to-br from-zinc-600 via-zinc-800 to-amber-800',
+    category: 'productivity',
+    description: 'Publishing surface (Lens/IPFS)',
+    isSystemApp: true,
+    isInstalled: true,
+  },
+  {
+    id: 'tradedesk',
+    name: 'Trade Desk',
+    icon: TrendingUp,
+    iconBg: 'bg-gradient-to-br from-amber-600 via-amber-900 to-zinc-900',
+    category: 'utilities',
+    description: 'Wallet · reserve · token · cashflow',
+    isSystemApp: true,
+    isInstalled: true,
+  },
+  {
+    id: 'school',
+    name: 'The School',
+    icon: GraduationCap,
+    iconBg: 'bg-gradient-to-br from-zinc-500 via-zinc-700 to-amber-900',
+    category: 'productivity',
+    description: 'Awards & helpdesk',
+    isSystemApp: true,
+    isInstalled: true,
+  },
+  {
+    id: 'lex',
+    name: 'LEX',
+    icon: BookOpen,
+    iconBg: 'bg-gradient-to-br from-amber-400 via-amber-700 to-zinc-900',
+    category: 'productivity',
+    description: 'Read-first dictionary + word NFT',
+    isSystemApp: true,
+    isInstalled: true,
+  },
+  {
+    id: 'agents',
+    name: 'Agent Ops',
+    icon: Bot,
+    iconBg: 'bg-gradient-to-br from-zinc-700 via-zinc-900 to-amber-800',
+    category: 'development',
+    description: 'Virtuals protocol (EconomyOS · ACP v2)',
+    isSystemApp: true,
+    isInstalled: true,
+  },
+  {
+    id: 'skin-builder',
+    name: 'Skin Builder',
+    icon: Palette,
+    iconBg: 'bg-gradient-to-br from-amber-500 via-zinc-700 to-zinc-900',
+    category: 'utilities',
+    description: 'The forge — palette · type · HUD',
+    isSystemApp: true,
+    isInstalled: true,
+  },
   {
     id: 'finder',
     name: 'Finder',
@@ -185,7 +262,20 @@ const defaultApps: Omit<AppDefinition, 'component'>[] = [
 
 const systemAppIds = defaultApps.filter(app => app.isSystemApp).map(app => app.id);
 
-const defaultPinnedAppIds = ['finder', 'terminal', 'settings', 'appstore', 'music', 'browser', 'excalidraw', 'photopea'];
+const defaultPinnedAppIds = [
+  'embassy',
+  'newsdesk',
+  'tradedesk',
+  'school',
+  'lex',
+  'agents',
+  'skin-builder',
+  'finder',
+  'terminal',
+  'settings',
+  'browser',
+  'appstore',
+];
 
 export const useAppStore = create<AppStore>()(
   persist(
