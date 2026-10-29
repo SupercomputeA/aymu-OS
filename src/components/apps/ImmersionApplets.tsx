@@ -1,117 +1,122 @@
-import { Construction } from 'lucide-react';
-
-interface AppletSpec {
-  code: string;
-  title: string;
-  tagline: string;
-  items: string[];
-}
-
-function AppletPlaceholder({ spec }: { spec: AppletSpec }) {
-  return (
-    <div className="h-full flex flex-col overflow-auto p-6">
-      <div className="flex items-center gap-3 mb-5">
-        <span className="px-2 py-1 rounded text-xs font-mono tracking-[0.2em] border border-primary/40 text-primary">
-          {spec.code}
-        </span>
-        <h2 className="text-xl font-semibold tracking-wide">{spec.title}</h2>
-      </div>
-
-      <p className="text-sm text-muted-foreground mb-6">{spec.tagline}</p>
-
-      <div className="glass-panel p-4 space-y-2.5 text-sm">
-        {spec.items.map((item) => (
-          <div key={item} className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/40 shrink-0" />
-            <span>{item}</span>
-            <span className="ml-auto text-xs text-muted-foreground/60 font-mono">planned</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-auto pt-6 flex items-start gap-2 text-xs text-muted-foreground">
-        <Construction className="w-4 h-4 mt-px shrink-0" />
-        <span>
-          Not wired — this is the honest placeholder surface. On-chain connection
-          (ENS / EAS / Base L2) arrives in a later gate. Nothing here claims a live
-          chain read or signature.
-        </span>
-      </div>
-    </div>
-  );
-}
+import { DemoDesk, type DemoDeskSpec } from './DemoDesk';
 
 type AppletProps = { windowId: string; fileId?: string };
 
-const makeApplet = (spec: AppletSpec) => {
-  const Component = (_props: AppletProps) => <AppletPlaceholder spec={spec} />;
+const makeDemoDesk = (spec: DemoDeskSpec) => {
+  const Component = (_props: AppletProps) => <DemoDesk spec={spec} />;
   return Component;
 };
 
+/* Embassy is the one real, wired applet — re-exported unchanged. */
 export { EmbassyApp } from './EmbassyApp';
 
-export const NewsDeskApp = makeApplet({
+/* Remaining desks — demo surfaces. Desk names + sub-app lists taken verbatim
+ * from docs/menu.md; one-line roles from the archived design source. */
+export const NewsDeskApp = makeDemoDesk({
   code: 'NEWS DESK',
-  title: 'News Desk',
-  tagline: 'Publishing surface — the sovereignty feed.',
+  title: 'News desk',
+  role: 'Write it, split it, prove it',
   items: [
-    'Lens / IPFS / ETH.LIMO publishing',
-    'Word-NFT mint on dispatch',
-    'Attestation feed (EAS refUID trail)',
+    { name: 'Social Media' },
+    { name: 'Blog' },
+    { name: 'Project Release' },
+    { name: 'Protocol Evaluations' },
   ],
 });
 
-export const TradeDeskApp = makeApplet({
+export const TradeDeskApp = makeDemoDesk({
   code: 'TRADE DESK',
-  title: 'Trade Desk',
-  tagline: 'Wallet · reserve · token · cashflow.',
+  title: 'Trade desk',
+  role: 'Prepare, never sign',
   items: [
-    'Non-custodial wallet (tree-shaken viem, no wagmi)',
-    'Reserve / token / cashflow views',
-    'SPLIT / LP / stable instruments',
+    { name: 'Home Office' },
+    { name: 'Wallet' },
+    { name: 'Reserve' },
+    { name: 'Token' },
+    { name: 'CashFlow' },
   ],
 });
 
-export const SchoolApp = makeApplet({
+export const SchoolApp = makeDemoDesk({
   code: 'SCHOOL',
-  title: 'The School',
-  tagline: 'Awards & helpdesk — the learning surface.',
+  title: 'School NFT',
+  role: 'Cohorts that learn the rails',
   items: [
-    'Awards ledger',
-    'Helpdesk',
-    'Pixel-compiler school feed',
+    { name: 'Awards' },
+    { name: 'HelpDesk' },
   ],
 });
 
-export const LexApp = makeApplet({
+export const WorldMarketApp = makeDemoDesk({
+  code: 'WORLD MARKET',
+  title: 'World Market',
+  role: 'Storefront · vendor · community map',
+  items: [
+    { name: 'Store Front' },
+    { name: 'Vendor' },
+    { name: 'Community Map', detail: 'Feature Set' },
+  ],
+});
+
+export const LexApp = makeDemoDesk({
   code: 'LEX',
-  title: 'LEX',
-  tagline: 'Read-first dictionary + word NFT.',
+  title: 'LEX NFT',
+  role: 'The value of a word',
   items: [
-    'Dictionary + micro-publishing terminal',
-    'Word NFT (verb communities, supersession trail)',
-    'Tokenized vocabulary as subscription',
+    { name: 'Word NFT', detail: 'dictionary — Lexicon · Verb · Namespace · Mint · Supersede' },
+    { name: 'Dao' },
+    { name: 'Meta Token' },
+    { name: 'DEFI Accumulation' },
+    { name: 'Tax / Subsidy' },
   ],
 });
 
-export const AgentOpsApp = makeApplet({
-  code: 'AGENT OPS',
-  title: 'Agent Ops',
-  tagline: 'Virtuals protocol — the agent economy.',
+export const CommunityApp = makeDemoDesk({
+  code: 'COMMUNITY',
+  title: 'Community',
+  role: 'The people on the list',
   items: [
-    'EconomyOS (non-custodial agent wallets)',
-    'ACP v2 job terminal (escrow / completion)',
-    'Capital formation (bonding curves, LP locks)',
+    { name: 'Social Media' },
   ],
 });
 
-export const SkinBuilderApp = makeApplet({
-  code: 'SKIN BUILDER',
-  title: 'Skin Builder',
-  tagline: 'The forge — locked palette, procedural.',
+export const ChannelApp = makeDemoDesk({
+  code: 'CHANNEL',
+  title: 'Channel',
+  role: 'Everything we broadcast',
   items: [
-    'Palette / type / borders / HUD',
-    'Locked palette (honest by construction)',
-    'Procedural pixel compiler (zero arbitrary uploads)',
+    { name: 'Live stream' },
+    { name: 'Social' },
+    { name: 'Tour' },
+    { name: 'Farcaster' },
+  ],
+});
+
+export const AgentApp = makeDemoDesk({
+  code: 'AGENT',
+  title: 'Agent',
+  role: 'Agents on dispatch',
+  items: [
+    { name: 'Virtuals' },
+    { name: 'Capital Formation' },
+    { name: 'App Release Schedule' },
+  ],
+});
+
+export const HelpdeskApp = makeDemoDesk({
+  code: 'HELPDESK',
+  title: 'Helpdesk',
+  role: 'The desk that answers',
+  items: [],
+});
+
+export const SettingsDeskApp = makeDemoDesk({
+  code: 'SETTINGS',
+  title: 'Settings',
+  role: 'The keys to the outpost',
+  items: [
+    { name: 'Admin' },
+    { name: 'Agent Manager' },
+    { name: 'Skin Builder', detail: 'UI · TaskBar · Load screen · Wallpaper · Icon · Swatch · Agent · Immersion' },
   ],
 });
