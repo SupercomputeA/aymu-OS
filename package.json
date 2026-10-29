@@ -11,7 +11,8 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "wrangler pages deploy dist --project-name=aymu"
+    "deploy": "wrangler pages deploy dist --project-name=aymu",
+    "conformance": "node --experimental-strip-types scripts/erc6551-conformance.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -65,6 +66,8 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.9",
+    "viem": "^2.56.9",
+    "wagmi": "^3.7.7",
     "zod": "^3.25.76",
     "zustand": "^5.0.9"
   },
