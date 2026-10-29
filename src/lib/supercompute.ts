@@ -1,8 +1,9 @@
 /* ============================================================================
  * Supercompute OS — verified protocol constants
  * ----------------------------------------------------------------------------
- * Every address in this file was verified live with `eth_getCode` against a
- * public RPC before being committed — see README "Verified constants".
+ * Addresses carry per-entry verification notes; where a claim is eth_getCode-
+ * verified it says so. Note the EAS EIP-712 proxy DIFFERS per chain (Base
+ * 0xF095…, Base Sepolia 0xAd64…) — the two are not the same deployment.
  *
  * Two chains, two jobs:
  *   Base SE POLIA (84532) — Presence. Canon's PresenceResolver is testnet-only
@@ -36,13 +37,13 @@ export const SCHEMA_REGISTRY_ADDRESSES = {
 } as const satisfies Record<number, `0x${string}`>;
 
 /**
- * EAS EIP-712 proxy. On Base mainnet and Base Sepolia the CREATE2 address is
- * the same deployment — verified on-chain for Base; Base Sepolia carries the
- * canonical CREATE2 address per the EAS deployment docs.
+ * EAS EIP-712 proxy — DIFFERENT per chain (not the same CREATE2 deployment).
+ * Base: 0xF095… (eth_getCode-verified). Base Sepolia: 0xAd64… (eth_getCode-
+ * verified, 10,304 bytes on 84532).
  */
 export const EAS_EIP712_PROXY_ADDRESSES = {
   [base.id]: '0xF095fE4b23958b08D38e52d5d5674bBF0C03cbF6',
-  [baseSepolia.id]: '0xF095fE4b23958b08D38e52d5d5674bBF0C03cbF6',
+  [baseSepolia.id]: '0xAd64A04c20dDBbA7cBb0EcAe4823095B4adA5c57',
 } as const satisfies Record<number, `0x${string}`>;
 
 /* ── Supercompute protocol (Base mainnet) ─────────────────────────────────── */

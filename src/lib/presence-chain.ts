@@ -29,11 +29,11 @@ export const PRESENCE_CHAIN = {
   explorer: 'https://sepolia.basescan.org',
 } as const;
 
-/** EAS deployments on Base Sepolia (canonical, same CREATE2 addresses as Base). */
+/** EAS deployments on Base Sepolia. The EIP-712 proxy is NOT the same as Base's. */
 export const PRESENCE_EAS_ADDRESSES = {
   eas: '0x4200000000000000000000000000000000000021',
   schemaRegistry: '0x4200000000000000000000000000000000000020',
-  eip712Proxy: '0xF095fE4b23958b08D38e52d5d5674bBF0C03cbF6',
+  eip712Proxy: '0xAd64A04c20dDBbA7cBb0EcAe4823095B4adA5c57',
 } as const;
 
 /** True when an address value is not yet a real deployed address. */
