@@ -1,5 +1,5 @@
 /* ============================================================================
- * THE 14-ROLE MATRIX
+ * THE ROLE MATRIX — 14 designations + the charter holder = 15 roles
  * ----------------------------------------------------------------------------
  * PROPOSAL STATUS — read this first.
  *

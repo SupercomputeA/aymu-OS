@@ -26,11 +26,61 @@ navy/brass steel-vault palette, CRT scanlines, and the sovereignty narrative.
 | Desktop shell + window manager | ✅ working (from aymu) |
 | Apps: Finder, Terminal, Browser, Music, Editor, App Store | ✅ working (from aymu) |
 | Immersion rebrand + steel-vault theme | ✅ this fork |
-| Immersion applet roster (Embassy/NewsDesk/TradeDesk/School/LEX/AgentOps) | ⬜ not wired — placeholder target |
-| ENS / EAS / Base L2 wiring | ⬜ not wired |
+| **Web3 core** — wagmi wallet-connect + ENS + ERC-6551 TBA derivation | ✅ this fork |
+| EAS / Lens / Presence chain-core modules | ✅ ported (library, `src/lib/`) |
+| Embassy desk (passport) | ✅ this fork |
+| NewsDesk / TradeDesk / School / LEX / AgentOps desks | ⬜ not wired — ported modules only |
 
 `deployed ≠ minted`, `zero ≠ unknown` — nothing above claims on-chain wiring it
-does not have.
+does not have. The Embassy passport surfaces real chain reads (account, chainId,
+ENS, TBA derivation) and labels anything not yet minted or not yet enforced as
+such; it never fabricates an address, a mint, or a role grant.
+
+## Web3 core — Embassy passport
+
+The **Embassy** desk (`src/components/apps/EmbassyApp.tsx`) is the Web3 front
+door: it connects an injected wallet (wagmi `injected` connector,
+`reconnectOnMount` off so no popup fires on first paint), then reads the live
+chain — account, chainId, primary ENS name (mainnet) — and shows a **local**
+ERC-6551 token-bound-account derivation for the Immersion NFT, plus the
+proposed role matrix. Until an Immersion NFT is actually minted the derivation
+is a preview and the passport says `minted: false`.
+
+The chain-core library lives in `src/lib/` and is the ported foundation for the
+remaining desks:
+
+| Module | What it is | Surfaces |
+| --- | --- | --- |
+| `wagmi.ts` | wagmi config — Base Sepolia / Base / Ethereum, injected connector | App provider |
+| `supercompute.ts` | chain constants — EAS, SchemaRegistry, Aragon DAO, RPC transports | library |
+| `immersion.ts` | Immersion NFT + ERC-6551 TBA derivation, passport model | Embassy |
+| `roles.ts` | the 15-role matrix (14 designations + charter holder), bitfield | Embassy |
+| `eas.ts` / `eas-index.ts` | EAS schemas, ABIs, canon Presence UIDs, read layer | library |
+| `lens.ts` / `lensWrite.ts` | Lens read (GraphQL) + write (viem) publishing rail | library |
+| `presence.ts` / `presence-chain.ts` | gasless proof-of-attendance (ported from canon) | library |
+| `charter.ts` / `community.ts` / `lexicon.ts` | franchise grant, community identity, vocabulary | library |
+| `matrix.ts` | sub-app & feature matrix (roadmap as data) | library |
+
+## Verified constants
+
+The protocol addresses in `src/lib/immersion.ts` and `src/lib/supercompute.ts`
+are **verified, not assumed**. `scripts/erc6551-conformance.ts` reads the live
+chain and asserts:
+
+- the ERC-6551 registry + account implementation have code on Base and Base
+  Sepolia;
+- the local create2 TBA derivation is bit-identical to the deployed registry's
+  `account()` on both chains;
+- the Immersion token contract, 0xSplits SplitMain, and the Aragon DAO have
+  code where the app expects them;
+- EAS has code on Ethereum / Base / Base Sepolia, and `computeSchemaUID`
+  reproduces the two canon Presence schema UIDs.
+
+```sh
+node --experimental-strip-types scripts/erc6551-conformance.ts
+```
+
+Exits non-zero on any failure (Node ≥ 22.6).
 
 ## Tech stack (inherited from aymu)
 
