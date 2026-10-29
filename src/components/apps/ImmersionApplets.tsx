@@ -1,3 +1,15 @@
+import {
+  Newspaper,
+  TrendingUp,
+  GraduationCap,
+  Store,
+  BookOpen,
+  Users,
+  Radio,
+  Bot,
+  LifeBuoy,
+  Palette,
+} from 'lucide-react';
 import { DemoDesk, type DemoDeskSpec } from './DemoDesk';
 
 type AppletProps = { windowId: string; fileId?: string };
@@ -7,15 +19,17 @@ const makeDemoDesk = (spec: DemoDeskSpec) => {
   return Component;
 };
 
-/* Embassy is the one real, wired applet — re-exported unchanged. */
+/* Embassy is the one real, wired applet — its Hero is the passport cover. */
 export { EmbassyApp } from './EmbassyApp';
 
-/* Remaining desks — demo surfaces. Desk names + sub-app lists taken verbatim
- * from docs/menu.md; one-line roles from the archived design source. */
+/* Remaining desks — demo Hero pages. Sub-app lists verbatim from docs/menu.md;
+ * thesis copy in the steel-vault narrative voice. */
 export const NewsDeskApp = makeDemoDesk({
   code: 'NEWS DESK',
   title: 'News desk',
-  role: 'Write it, split it, prove it',
+  thesis:
+    "the broadsheet: Supercompute's publishing desk. Protocol evaluations, releases, the record.",
+  icon: Newspaper,
   items: [
     { name: 'Social Media' },
     { name: 'Blog' },
@@ -27,7 +41,9 @@ export const NewsDeskApp = makeDemoDesk({
 export const TradeDeskApp = makeDemoDesk({
   code: 'TRADE DESK',
   title: 'Trade desk',
-  role: 'Prepare, never sign',
+  thesis:
+    'the treasury: wallet, reserve, cashflow, splits. Money, and what it is doing.',
+  icon: TrendingUp,
   items: [
     { name: 'Home Office' },
     { name: 'Wallet' },
@@ -40,7 +56,8 @@ export const TradeDeskApp = makeDemoDesk({
 export const SchoolApp = makeDemoDesk({
   code: 'SCHOOL',
   title: 'School NFT',
-  role: 'Cohorts that learn the rails',
+  thesis: 'the curriculum: sovereign education. Courses, presence, awards.',
+  icon: GraduationCap,
   items: [
     { name: 'Awards' },
     { name: 'HelpDesk' },
@@ -50,7 +67,8 @@ export const SchoolApp = makeDemoDesk({
 export const WorldMarketApp = makeDemoDesk({
   code: 'WORLD MARKET',
   title: 'World Market',
-  role: 'Storefront · vendor · community map',
+  thesis: 'the market: storefront, vendors, community map. Commerce between outposts.',
+  icon: Store,
   items: [
     { name: 'Store Front' },
     { name: 'Vendor' },
@@ -61,7 +79,8 @@ export const WorldMarketApp = makeDemoDesk({
 export const LexApp = makeDemoDesk({
   code: 'LEX',
   title: 'LEX NFT',
-  role: 'The value of a word',
+  thesis: 'the word: the Verb/Word NFT. Definitions as collectible, meaning as ownership.',
+  icon: BookOpen,
   items: [
     { name: 'Word NFT', detail: 'dictionary — Lexicon · Verb · Namespace · Mint · Supersede' },
     { name: 'Dao' },
@@ -74,7 +93,8 @@ export const LexApp = makeDemoDesk({
 export const CommunityApp = makeDemoDesk({
   code: 'COMMUNITY',
   title: 'Community',
-  role: 'The people on the list',
+  thesis: 'the commons: social threads between passport holders.',
+  icon: Users,
   items: [
     { name: 'Social Media' },
   ],
@@ -83,7 +103,8 @@ export const CommunityApp = makeDemoDesk({
 export const ChannelApp = makeDemoDesk({
   code: 'CHANNEL',
   title: 'Channel',
-  role: 'Everything we broadcast',
+  thesis: 'the broadcast: live stream, social, the tour.',
+  icon: Radio,
   items: [
     { name: 'Live stream' },
     { name: 'Social' },
@@ -95,7 +116,8 @@ export const ChannelApp = makeDemoDesk({
 export const AgentApp = makeDemoDesk({
   code: 'AGENT',
   title: 'Agent',
-  role: 'Agents on dispatch',
+  thesis: 'the ops: Virtuals + ACP. Agents that work the outpost.',
+  icon: Bot,
   items: [
     { name: 'Virtuals' },
     { name: 'Capital Formation' },
@@ -106,14 +128,16 @@ export const AgentApp = makeDemoDesk({
 export const HelpdeskApp = makeDemoDesk({
   code: 'HELPDESK',
   title: 'Helpdesk',
-  role: 'The desk that answers',
+  thesis: 'the desk: support for the Supercompute NFT and per-client.',
+  icon: LifeBuoy,
   items: [],
 });
 
 export const SettingsDeskApp = makeDemoDesk({
   code: 'SETTINGS',
   title: 'Settings',
-  role: 'The keys to the outpost',
+  thesis: 'the keys: Admin, Agent Manager, Skin Builder. The controls of the outpost.',
+  icon: Palette,
   items: [
     { name: 'Admin' },
     { name: 'Agent Manager' },
