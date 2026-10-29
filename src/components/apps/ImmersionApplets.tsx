@@ -48,16 +48,7 @@ const makeApplet = (spec: AppletSpec) => {
   return Component;
 };
 
-export const EmbassyApp = makeApplet({
-  code: 'EMBASSY',
-  title: 'Embassy',
-  tagline: 'Sovereign identity & presence — your on-chain passport and outpost.',
-  items: [
-    'ENS login + passport (nameProvenance: issued / brought)',
-    'ERC-6551 franchise TBA derivation (deterministic)',
-    'EAS presence check-ins',
-  ],
-});
+export { EmbassyApp } from './EmbassyApp';
 
 export const NewsDeskApp = makeApplet({
   code: 'NEWS DESK',
