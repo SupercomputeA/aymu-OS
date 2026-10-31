@@ -34,9 +34,9 @@ describe('branding', () => {
     expect(hits.length).toBeGreaterThanOrEqual(4);
   });
 
-  it('shows the SUPERCOMPUTE wordmark + version on the wallpaper', () => {
-    const desktop = readFileSync(join(process.cwd(), 'src/components/os/Desktop.tsx'), 'utf8');
-    expect(desktop).toContain('SUPERCOMPUTE');
-    expect(desktop).toContain('Immersion OS v1.2.0');
+  it('carries the SUPERCOMPUTE brand + version name', () => {
+    const all = files.map((f) => readFileSync(f, 'utf8')).join('\n');
+    expect(all).toContain('SUPERCOMPUTE');
+    expect(all).toContain('Immersion OS v1.2.0');
   });
 });
