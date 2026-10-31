@@ -39,7 +39,7 @@ const bootLogs: BootLogEntry[] = [
   { text: '[    0.291234] System integrity check... PASSED', color: 'green', delay: 15 },
   { text: '[    0.303456] Network ping: 8ms latency', color: 'green', delay: 10 },
   { text: '', color: 'white', delay: 20 },
-  { text: 'Immersion terminal [v0.2.0]', color: 'cyan', delay: 15 },
+  { text: 'Immersion terminal [v1.2.0]', color: 'cyan', delay: 15 },
   { text: 'System Ready.', color: 'green', delay: 20 },
 ];
 

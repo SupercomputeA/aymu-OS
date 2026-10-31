@@ -39,7 +39,12 @@ export function LoginScreen() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          <div className="vault-monogram">I</div>
+          <img
+            src="/supercompute-logo.png"
+            alt="Supercompute"
+            className="h-24 w-24 object-contain drop-shadow-[0_0_24px_rgba(201,163,58,0.35)]"
+            draggable={false}
+          />
         </motion.div>
 
         <motion.div
@@ -106,7 +111,7 @@ export function LoginScreen() {
             ⚙ fork of aymu-OS · Apache-2.0
           </span>
           <span className="px-2 py-1 rounded-full border border-primary/50 text-primary">
-            ◈ Immersion OS v0.2.0
+            ◈ Immersion OS v1.2.0
           </span>
         </div>
       </motion.div>
