@@ -126,12 +126,12 @@ export function Dock() {
       )}
 
       <motion.div
-        className="fixed left-3 top-1/2 -translate-y-1/2 z-40"
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.5, type: 'spring' }}
+        className="fixed left-3 top-1/2 z-40"
+        initial={{ opacity: 0, y: '-50%' }}
+        animate={{ opacity: 1, y: '-50%' }}
+        transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <div className="dock flex flex-col -translate-y-1/2">
+        <div className="dock flex flex-col">
           {/* App Drawer Button */}
           <div
             className="relative"
