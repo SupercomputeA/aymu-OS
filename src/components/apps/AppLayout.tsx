@@ -13,7 +13,7 @@ interface AppLayoutProps {
  * place each time: header (icon + code + title) → hero thesis → content. */
 export function AppLayout({ code, title, thesis, icon: Icon, children }: AppLayoutProps) {
   return (
-    <div className="flex h-full flex-col overflow-auto p-6">
+    <div className="flex h-full flex-col overflow-hidden p-6">
       <div className="mb-3 flex items-start gap-4">
         {Icon && (
           <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-primary/40 bg-primary/5 text-primary">
@@ -28,9 +28,9 @@ export function AppLayout({ code, title, thesis, icon: Icon, children }: AppLayo
         </div>
       </div>
 
-      <p className="mb-6 mt-1 text-base text-muted-foreground">{thesis}</p>
+      <p className="mb-5 mt-1 text-base text-muted-foreground">{thesis}</p>
 
-      {children}
+      <div className="flex-1 min-h-0">{children}</div>
     </div>
   );
 }
