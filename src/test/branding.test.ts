@@ -24,11 +24,11 @@ describe('branding', () => {
     expect(hits).toEqual([]);
   });
 
-  it('carries v1.2.0 across the version surfaces', () => {
+  it('carries v1.5.0 across the version surfaces', () => {
     const hits: string[] = [];
     for (const f of files) {
       const c = readFileSync(f, 'utf8');
-      if (/v1\.2\.0|Version 1\.2\.0/.test(c)) hits.push(f);
+      if (/v1\.5\.0|Version 1\.5\.0/.test(c)) hits.push(f);
     }
     // login, boot, terminal, settings/about, desktop wallpaper
     expect(hits.length).toBeGreaterThanOrEqual(4);
@@ -37,6 +37,6 @@ describe('branding', () => {
   it('carries the SUPERCOMPUTE brand + version name', () => {
     const all = files.map((f) => readFileSync(f, 'utf8')).join('\n');
     expect(all).toContain('SUPERCOMPUTE');
-    expect(all).toContain('Immersion OS v1.2.0');
+    expect(all).toContain('Immersion OS v1.5.0');
   });
 });

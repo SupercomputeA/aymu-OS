@@ -111,7 +111,7 @@ export function LoginScreen() {
             ⚙ fork of aymu-OS · Apache-2.0
           </span>
           <span className="px-2 py-1 rounded-full border border-primary/50 text-primary">
-            ◈ Immersion OS v1.2.0
+            ◈ Immersion OS v1.5.0
           </span>
         </div>
       </motion.div>

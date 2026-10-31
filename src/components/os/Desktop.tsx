@@ -116,7 +116,7 @@ export function Desktop() {
       {/* Wallpaper version — behind windows (brand now lives in the menu bar) */}
       <div className="pointer-events-none absolute left-24 top-48 z-0 select-none">
         <div className="font-mono text-xs tracking-[0.2em] text-muted-foreground/70">
-          Immersion OS v1.2.0
+          Immersion OS v1.5.0
         </div>
       </div>
 

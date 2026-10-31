@@ -79,7 +79,7 @@ const buildDevFileSystem = (files: any[]): DevFileSystemNode => {
     permissions: 'drwxr-xr-x',
     owner: 'root',
     children: [
-      { id: crypto.randomUUID(), name: 'kernel', type: 'file', content: 'Immersion OS Kernel 1.2.0', permissions: '-rw-r--r--', owner: 'root' },
+      { id: crypto.randomUUID(), name: 'kernel', type: 'file', content: 'Immersion OS Kernel 1.5.0', permissions: '-rw-r--r--', owner: 'root' },
       { id: crypto.randomUUID(), name: 'initrd', type: 'file', content: 'Initial ramdisk', permissions: '-rw-r--r--', owner: 'root' },
     ],
   };
@@ -94,7 +94,7 @@ const buildDevFileSystem = (files: any[]): DevFileSystemNode => {
     children: [
       { id: crypto.randomUUID(), name: 'passwd', type: 'file', content: 'root:admin:0:0:System Administrator:/root:/bin/bash\nuser:1234:1000:1000:User:/home/user:/bin/bash', permissions: '-rw-r--r--', owner: 'root' },
       { id: crypto.randomUUID(), name: 'hostname', type: 'file', content: 'Immersion', permissions: '-rw-r--r--', owner: 'root' },
-      { id: crypto.randomUUID(), name: 'os-release', type: 'file', content: 'NAME="Immersion OS"\nVERSION="1.2.0"\nID=immersion-os\nPRETTY_NAME="Immersion OS"', permissions: '-rw-r--r--', owner: 'root' },
+      { id: crypto.randomUUID(), name: 'os-release', type: 'file', content: 'NAME="Immersion OS"\nVERSION="1.5.0"\nID=immersion-os\nPRETTY_NAME="Immersion OS"', permissions: '-rw-r--r--', owner: 'root' },
     ],
   };
 
@@ -413,7 +413,7 @@ export function DeveloperSettingsApp({ windowId }: DeveloperSettingsAppProps) {
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 rounded-lg" style={{ background: 'rgba(30, 30, 30, 0.6)' }}>
                 <p className="text-sm text-muted-foreground mb-2">System Version</p>
-                <p className="text-xl font-medium">Immersion OS 1.2.0</p>
+                <p className="text-xl font-medium">Immersion OS 1.5.0</p>
               </div>
               <div className="p-4 rounded-lg" style={{ background: 'rgba(30, 30, 30, 0.6)' }}>
                 <p className="text-sm text-muted-foreground mb-2">React Version</p>
