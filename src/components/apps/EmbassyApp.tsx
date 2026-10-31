@@ -1,7 +1,8 @@
 /* ============================================================================
  * EmbassyApp — the diplomatic PASSPORT
  * ----------------------------------------------------------------------------
- * Re-shaped from a dashboard into a passport booklet (steel-vault navy/brass).
+ * Re-shaped from a dashboard into a passport booklet (steel-vault navy/brass),
+ * opened from the shared AppLayout hero (name + thesis) like every other desk.
  *
  *   · PFP  — a procedural pixel avatar, deterministically derived from the
  *            holder's address (locked palette, zero arbitrary uploads).
@@ -25,6 +26,7 @@ import {
 } from '@/lib/eas';
 import { ROLES, rolesByGroup } from '@/lib/roles';
 import { ARAGON_DAO_ADDRESS, GOVERNANCE_LINKS } from '@/lib/supercompute';
+import { AppLayout } from './AppLayout';
 
 function shortAddr(a?: string): string {
   return a ? `${a.slice(0, 6)}…${a.slice(-4)}` : '—';
@@ -106,14 +108,14 @@ function PixelAvatar({
 
 function VisaStamp({ title, uid }: { title: string; uid: string }) {
   return (
-    <div className="flex-1 -rotate-3 rounded-full border-2 border-[#c9a33a]/40 bg-[#0d1f3d]/40 px-4 py-4 text-center">
-      <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#c9a33a]">
+    <div className="flex-1 -rotate-2 rounded-full border-2 border-[#c9a33a]/40 bg-[#0d1f3d]/40 px-4 py-4 text-center">
+      <div className="text-xs font-mono uppercase tracking-[0.2em] text-[#c9a33a]">
         {title}
       </div>
-      <div className="mt-1.5 break-all text-[9px] font-mono text-muted-foreground/80">
+      <div className="mt-1.5 break-all text-xs font-mono text-muted-foreground/80">
         {uid.slice(0, 12)}…{uid.slice(-8)}
       </div>
-      <div className="mt-1.5 text-[9px] font-mono uppercase tracking-wider text-muted-foreground/60">
+      <div className="mt-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
         0 · not wired
       </div>
     </div>
@@ -134,13 +136,18 @@ export function EmbassyApp(_props: { windowId: string; fileId?: string }) {
     : 'NOT ISSUED';
 
   return (
-    <div className="h-full flex flex-col overflow-auto p-6">
+    <AppLayout
+      code="EMBASSY"
+      title="Embassy"
+      thesis="the passport: identity, credentials, membership."
+      icon={Landmark}
+    >
       <div className="overflow-hidden rounded-lg border-2 border-[#c9a33a]/50 bg-[#0a1330]">
         {/* ── COVER ─────────────────────────────────────────────────────── */}
         <div className="border-b border-[#c9a33a]/30 bg-[#0a1330] px-5 py-4 text-center">
           <div className="mb-1.5 flex items-center justify-center gap-2">
             <Landmark className="h-4 w-4 text-[#c9a33a]" />
-            <span className="text-[10px] font-mono tracking-[0.4em] text-[#c9a33a]">
+            <span className="text-xs font-mono tracking-[0.4em] text-[#c9a33a]">
               IMMERSION OS
             </span>
             <Landmark className="h-4 w-4 text-[#c9a33a]" />
@@ -148,14 +155,14 @@ export function EmbassyApp(_props: { windowId: string; fileId?: string }) {
           <h2 className="text-xl font-semibold tracking-[0.22em] text-[#e8dcc0]">
             DIPLOMATIC PASSPORT
           </h2>
-          <div className="mt-1.5 text-[10px] font-mono tracking-[0.3em] text-[#c9a33a]/70">
+          <div className="mt-1.5 text-xs font-mono tracking-[0.3em] text-[#c9a33a]/70">
             PASSPORT Nº {passportNo}
           </div>
         </div>
 
         {/* ── HOLDER PAGE (PFP + ENS) ──────────────────────────────────── */}
         <div className="space-y-3 px-5 py-4">
-          <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#c9a33a]/80">
+          <div className="text-xs font-mono uppercase tracking-[0.3em] text-[#c9a33a]/80">
             Holder
           </div>
 
@@ -164,39 +171,39 @@ export function EmbassyApp(_props: { windowId: string; fileId?: string }) {
               {isConnected ? (
                 <PixelAvatar seed={seed} size={96} />
               ) : (
-                <div className="flex h-24 w-24 items-center justify-center rounded border border-dashed border-[#c9a33a]/40 px-2 text-center text-[9px] font-mono uppercase tracking-wider text-muted-foreground">
+                <div className="flex h-24 w-24 items-center justify-center rounded border border-dashed border-[#c9a33a]/40 px-2 text-center text-xs font-mono uppercase tracking-wider text-muted-foreground">
                   not wired
                 </div>
               )}
-              <div className="mt-1 text-center text-[9px] font-mono uppercase tracking-wider text-muted-foreground/60">
+              <div className="mt-1 text-center text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
                 photo
               </div>
             </div>
 
-            <div className="flex-1 space-y-2 text-sm">
+            <div className="flex-1 space-y-2.5">
               <div>
-                <div className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/60">
+                <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
                   Holder / ENS
                 </div>
-                <div className="font-mono text-[#e8dcc0]">{ensName ?? '— not wired'}</div>
+                <div className="font-mono text-base text-[#e8dcc0]">{ensName ?? '— not wired'}</div>
               </div>
               <div>
-                <div className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/60">
+                <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
                   Address
                 </div>
-                <div className="font-mono text-[#e8dcc0]">{shortAddr(address)}</div>
+                <div className="font-mono text-base text-[#e8dcc0]">{shortAddr(address)}</div>
               </div>
               <div>
-                <div className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/60">
+                <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
                   Chain ID
                 </div>
-                <div className="font-mono text-[#e8dcc0]">{chainId ?? '—'}</div>
+                <div className="font-mono text-base text-[#e8dcc0]">{chainId ?? '—'}</div>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 text-[10px] font-mono text-muted-foreground">
-            <ShieldAlert className="h-3.5 w-3.5 shrink-0" />
+          <div className="flex items-center gap-2 text-sm font-mono text-muted-foreground">
+            <ShieldAlert className="h-4 w-4 shrink-0" />
             <span>
               minted: false · issued by the Immersion NFT (ERC-6551) · nothing
               here is fabricated
@@ -205,7 +212,7 @@ export function EmbassyApp(_props: { windowId: string; fileId?: string }) {
 
           {isConnected ? (
             <button
-              className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground underline hover:text-[#c9a33a]"
+              className="text-xs font-mono uppercase tracking-wider text-muted-foreground underline hover:text-[#c9a33a]"
               onClick={() => disconnect()}
             >
               Disconnect wallet
@@ -213,13 +220,13 @@ export function EmbassyApp(_props: { windowId: string; fileId?: string }) {
           ) : (
             <div className="space-y-2">
               <button
-                className="inline-flex items-center gap-2 rounded bg-[#c9a33a] px-3 py-1.5 text-xs font-semibold text-[#0a1330]"
+                className="inline-flex items-center gap-2 rounded bg-[#c9a33a] px-3 py-1.5 text-sm font-semibold text-[#0a1330]"
                 onClick={() => connectors[0] && connect({ connector: connectors[0] })}
               >
-                <Link2 className="h-3.5 w-3.5" />
+                <Link2 className="h-4 w-4" />
                 Present wallet
               </button>
-              <p className="text-[10px] font-mono text-muted-foreground/70">
+              <p className="text-xs font-mono text-muted-foreground/70">
                 not wired until a wallet is presented — no address, ENS or
                 attestation is invented.
               </p>
@@ -229,14 +236,14 @@ export function EmbassyApp(_props: { windowId: string; fileId?: string }) {
 
         {/* ── VISA STAMPS (EAS) ────────────────────────────────────────── */}
         <div className="space-y-3 border-t border-[#c9a33a]/20 px-5 py-4">
-          <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#c9a33a]/80">
+          <div className="text-xs font-mono uppercase tracking-[0.3em] text-[#c9a33a]/80">
             Visa stamps — EAS
           </div>
           <div className="flex gap-4">
             <VisaStamp title={PRESENCE_EVENT.title} uid={PRESENCE_EVENT_UID} />
             <VisaStamp title={PRESENCE_MOMENT.title} uid={PRESENCE_MOMENT_UID} />
           </div>
-          <p className="text-[10px] font-mono text-muted-foreground/70">
+          <p className="text-sm font-mono text-muted-foreground/70">
             The two canon Presence schemas (Base Sepolia). Attestations render
             here as stamps once a wallet presents — the count is never invented.
           </p>
@@ -245,18 +252,18 @@ export function EmbassyApp(_props: { windowId: string; fileId?: string }) {
         {/* ── DAO MEMBERSHIP ───────────────────────────────────────────── */}
         <div className="space-y-3 border-t border-[#c9a33a]/20 px-5 py-4">
           <div className="flex items-center gap-2">
-            <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#c9a33a]/80">
+            <div className="text-xs font-mono uppercase tracking-[0.3em] text-[#c9a33a]/80">
               DAO membership
             </div>
-            <span className="text-[9px] font-mono text-muted-foreground/60">
+            <span className="text-xs font-mono text-muted-foreground/60">
               {ROLES.length} roles · proposed · not enforced
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-1">
+          <div className="grid grid-cols-2 gap-1.5">
             {[...rolesByGroup('core'), ...rolesByGroup('operations')].map((r) => (
-              <div key={r.id} className="flex items-center gap-1.5 text-[11px] font-mono">
-                <span className="h-1 w-1 shrink-0 rounded-full bg-[#c9a33a]/50" />
+              <div key={r.id} className="flex items-center gap-2 text-sm font-mono">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#c9a33a]/50" />
                 <span className="text-[#e8dcc0]">{r.label}</span>
               </div>
             ))}
@@ -266,13 +273,13 @@ export function EmbassyApp(_props: { windowId: string; fileId?: string }) {
             href={GOVERNANCE_LINKS.aragon}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-[10px] font-mono text-[#c9a33a] hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm font-mono text-[#c9a33a] hover:underline"
           >
-            <Stamp className="h-3.5 w-3.5" />
+            <Stamp className="h-4 w-4" />
             Governance — Aragon DAO {shortAddr(ARAGON_DAO_ADDRESS)}
           </a>
         </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }

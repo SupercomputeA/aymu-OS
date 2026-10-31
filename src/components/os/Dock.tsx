@@ -128,7 +128,7 @@ export function Dock() {
       <motion.div
         className="fixed left-3 top-1/2 -translate-y-1/2 z-40"
         initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
+        animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.5, type: 'spring' }}
       >
         <div className="dock flex flex-col -translate-y-1/2">
@@ -144,12 +144,11 @@ export function Dock() {
                 soundManager.playTick();
                 setIsAppDrawerOpen(true);
               }}
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
               whileHover={{
                 scale: 1.13,
-                x: 20,
                 transition: {
                   type: 'spring',
                   stiffness: 100,
@@ -192,12 +191,11 @@ export function Dock() {
                 className={`dock-item ${isAppRunning(app.id) ? 'active' : ''}`}
                 onClick={() => handleAppClick(app.id, app.name)}
                 onContextMenu={(e) => handleContextMenu(e, app.id)}
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 + index * 0.05 }}
                 whileHover={{
                   scale: 1.13,
-                  x: 10,
                   transition: {
                     type: 'spring',
                     stiffness: 200,
@@ -251,13 +249,12 @@ export function Dock() {
                   className="dock-item active"
                   onClick={() => handleAppClick(app.id, app.name)}
                   onContextMenu={(e) => handleContextMenu(e, app.id)}
-                  initial={{ x: -20, opacity: 0, scale: 0.8 }}
-                  animate={{ x: 0, opacity: 1, scale: 1 }}
-                  exit={{ x: -20, opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                   whileHover={{
                     scale: 1.13,
-                    x: 20,
                     transition: {
                       type: 'spring',
                       stiffness: 100,
@@ -298,12 +295,11 @@ export function Dock() {
           >
             <motion.button
               className="dock-item"
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
               whileHover={{
                 scale: 1.2,
-                y: -8,
                 transition: {
                   type: 'spring',
                   stiffness: 400,

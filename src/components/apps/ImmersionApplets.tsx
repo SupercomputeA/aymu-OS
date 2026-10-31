@@ -135,8 +135,9 @@ export const HelpdeskApp = makeDemoDesk({
 
 export const SettingsDeskApp = makeDemoDesk({
   code: 'SETTINGS',
-  title: 'Settings',
+  title: 'Immersion Settings',
   thesis: 'the keys: Admin, Agent Manager, Skin Builder. The controls of the outpost.',
+  note: 'OS configuration (wallpaper, sound, display) lives in System Settings.',
   icon: Palette,
   items: [
     { name: 'Admin' },

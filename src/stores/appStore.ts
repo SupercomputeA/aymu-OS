@@ -113,7 +113,7 @@ const defaultApps: Omit<AppDefinition, 'component'>[] = [
   },
   {
     id: 'skin-builder',
-    name: 'Settings',
+    name: 'Immersion Settings',
     icon: Palette,
     iconBg: 'bg-gradient-to-br from-amber-500 via-zinc-700 to-zinc-900',
     category: 'utilities',
@@ -317,11 +317,6 @@ const defaultPinnedAppIds = [
   'agents',
   'helpdesk',
   'skin-builder',
-  'finder',
-  'terminal',
-  'settings',
-  'browser',
-  'appstore',
 ];
 
 export const useAppStore = create<AppStore>()(
