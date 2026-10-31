@@ -162,12 +162,15 @@ export function SettingsApp({ windowId }: SettingsAppProps) {
 
             <div className="glass-panel p-6 space-y-4">
               <div className="flex items-center gap-4">
-                <div className="w-20 h-20 rounded-2xl flex items-center justify-center vault-monogram !w-20 !h-20 !text-2xl">
-                  I
-                </div>
+                <img
+                  src="/supercompute-logo.png"
+                  alt="Supercompute"
+                  className="h-20 w-20 object-contain"
+                  draggable={false}
+                />
                 <div>
                   <h3 className="text-2xl font-semibold">Immersion OS</h3>
-                  <p className="text-muted-foreground">Version 0.2.0</p>
+                  <p className="text-muted-foreground">Version 1.2.0</p>
                 </div>
               </div>
 
