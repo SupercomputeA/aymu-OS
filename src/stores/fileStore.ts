@@ -66,7 +66,7 @@ const baseFileSystem: FileSystemNode[] = [
     type: 'file',
     path: '/etc/os-release',
     parentId: 'etc',
-    content: 'NAME="Immersion OS"\nVERSION="1.2.0"\nID=immersion-os\nPRETTY_NAME="Immersion OS"',
+    content: 'NAME="Immersion OS"\nVERSION="1.5.0"\nID=immersion-os\nPRETTY_NAME="Immersion OS"',
     createdAt: new Date(),
     modifiedAt: new Date()
   },

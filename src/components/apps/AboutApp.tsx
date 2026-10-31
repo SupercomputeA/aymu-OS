@@ -14,7 +14,7 @@ export function AboutApp({ windowId }: AboutAppProps) {
       <h1 className="text-3xl font-light mb-1">
         <span className="font-semibold">Immersion OS</span>
       </h1>
-      <p className="text-muted-foreground mb-6">Version 1.2.0</p>
+      <p className="text-muted-foreground mb-6">Version 1.5.0</p>
 
       <div className="glass-panel p-6 max-w-md space-y-4 text-sm">
         <p>

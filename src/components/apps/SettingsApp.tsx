@@ -211,14 +211,14 @@ export function SettingsApp({ windowId }: SettingsAppProps) {
                 />
                 <div>
                   <h3 className="text-2xl font-semibold">Immersion OS</h3>
-                  <p className="text-muted-foreground">Version 1.2.0</p>
+                  <p className="text-muted-foreground">Version 1.5.0</p>
                 </div>
               </div>
 
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between py-2 border-b border-border/50">
                   <span className="text-muted-foreground">System</span>
-                  <span>Immersion OS v1.2.0</span>
+                  <span>Immersion OS v1.5.0</span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-border/50">
                   <span className="text-muted-foreground">Kernel</span>
