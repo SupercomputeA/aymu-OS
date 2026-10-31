@@ -16,7 +16,7 @@
 import { NeuroNoise } from '@paper-design/shaders-react';
 import { useSystemStore } from '@/stores/systemStore';
 
-const NERO_COLORS = {
+export const NERO_COLORS = {
   colorBack: '#0a1330',
   colorMid: '#0d1f3d',
   colorFront: '#c9a33a',
