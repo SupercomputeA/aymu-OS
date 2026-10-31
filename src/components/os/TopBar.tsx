@@ -139,7 +139,10 @@ export function TopBar() {
   return (
     <div className="top-bar fixed top-0 left-0 right-0 h-7 z-50 flex items-center justify-between px-4 text-sm select-none">
       <div className="flex items-center gap-[2px]" ref={menuRef}>
-        <img src="/icons/aymuos.png" alt="Immersion" className="drag-none h-4" draggable="false" />
+        <img src="/supercompute-logo.png" alt="Supercompute" className="drag-none h-4 w-4 object-contain" draggable="false" />
+        <span className="ml-1.5 mr-2 font-semibold tracking-[0.18em] text-[#c9a33a] text-xs">
+          SUPERCOMPUTE
+        </span>
         {/* Menus */}
         {menus.map((menu) => (
           <div key={menu.label} className="relative">
