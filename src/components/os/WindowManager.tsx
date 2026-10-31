@@ -19,9 +19,13 @@ import {
   NewsDeskApp,
   TradeDeskApp,
   SchoolApp,
+  WorldMarketApp,
   LexApp,
-  AgentOpsApp,
-  SkinBuilderApp,
+  CommunityApp,
+  ChannelApp,
+  AgentApp,
+  HelpdeskApp,
+  SettingsDeskApp,
 } from '../apps/ImmersionApplets';
 
 const appComponents: Record<string, React.ComponentType<{ windowId: string; fileId?: string }>> = {
@@ -42,9 +46,13 @@ const appComponents: Record<string, React.ComponentType<{ windowId: string; file
   newsdesk: NewsDeskApp,
   tradedesk: TradeDeskApp,
   school: SchoolApp,
+  'world-market': WorldMarketApp,
   lex: LexApp,
-  agents: AgentOpsApp,
-  'skin-builder': SkinBuilderApp,
+  community: CommunityApp,
+  channel: ChannelApp,
+  agents: AgentApp,
+  helpdesk: HelpdeskApp,
+  'skin-builder': SettingsDeskApp,
 };
 
 export function WindowManager() {

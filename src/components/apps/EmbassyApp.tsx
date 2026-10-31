@@ -1,15 +1,17 @@
 /* ============================================================================
- * EmbassyApp — the Embassy desk (diplomatic-immunity passport)
+ * EmbassyApp — the diplomatic PASSPORT
  * ----------------------------------------------------------------------------
- * The Web3 core's front door on aymu-OS. Surfaces the honest passport:
+ * Re-shaped from a dashboard into a passport booklet (steel-vault navy/brass),
+ * opened from the shared AppLayout hero (name + thesis) like every other desk.
  *
- *   · wallet-connect (wagmi injected connector, reconnectOnMount off)
- *   · connected → chainId · account · ENS name (mainnet) · ERC-6551 TBA
- *     derivation preview · the 15-role matrix · minted: false
+ *   · PFP  — a procedural pixel avatar, deterministically derived from the
+ *            holder's address (locked palette, zero arbitrary uploads).
+ *   · ENS  — the holder's name field (resolution already wired on mainnet).
+ *   · EAS  — the two canon Presence schemas rendered as "visa stamps".
+ *   · DAO  — the 15-role matrix + an Aragon governance entry point.
  *
- * Nothing here fabricates an address, a mint, or a role grant. Until an
- * Immersion NFT is actually minted, the TBA derivation is a PREVIEW and the
- * passport says so.
+ * Honesty: "not wired until a wallet is presented"; nothing is fabricated —
+ * no address, ENS, attestation count or role grant is invented.
  * ========================================================================= */
 
 import { useMemo } from 'react';
@@ -17,16 +19,110 @@ import { Landmark, Link2, ShieldAlert, Stamp } from 'lucide-react';
 import { useAccount, useConnect, useDisconnect, useEnsName } from 'wagmi';
 import { mainnet } from 'wagmi/chains';
 import {
-  IMMERSION_TOKEN_CONTRACT,
-  ERC6551_REGISTRY,
-  ERC6551_ACCOUNT_IMPLEMENTATION,
-  derivePassport,
-} from '@/lib/immersion';
+  PRESENCE_EVENT,
+  PRESENCE_EVENT_UID,
+  PRESENCE_MOMENT,
+  PRESENCE_MOMENT_UID,
+} from '@/lib/eas';
 import { ROLES, rolesByGroup } from '@/lib/roles';
+import { ARAGON_DAO_ADDRESS, GOVERNANCE_LINKS } from '@/lib/supercompute';
+import { AppLayout } from './AppLayout';
 
 function shortAddr(a?: string): string {
   return a ? `${a.slice(0, 6)}…${a.slice(-4)}` : '—';
 }
+
+/* ── Procedural pixel avatar (honest-by-construction) ─────────────────────── */
+
+const PFP_PALETTE = [
+  '#0a1330', // deep navy
+  '#0d1f3d', // slate
+  '#1a2f4d', // steel
+  '#c9a33a', // brass
+  '#8a6d1f', // dark brass
+  '#e8dcc0', // paper brass
+] as const;
+
+function fnv1a(s: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return h >>> 0;
+}
+
+function mulberry32(seed: number) {
+  let a = seed >>> 0;
+  return () => {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function PixelAvatar({
+  seed,
+  size = 96,
+  grid = 11,
+}: {
+  seed: string;
+  size?: number;
+  grid?: number;
+}) {
+  const rects = useMemo(() => {
+    const rand = mulberry32(fnv1a(seed));
+    const half = Math.ceil(grid / 2);
+    const out: { x: number; y: number; fill: string }[] = [];
+    for (let y = 0; y < grid; y++) {
+      for (let x = 0; x < half; x++) {
+        if (rand() > 0.42) {
+          const fill = PFP_PALETTE[Math.floor(rand() * PFP_PALETTE.length)];
+          out.push({ x, y, fill });
+          if (x !== grid - 1 - x) out.push({ x: grid - 1 - x, y, fill });
+        }
+      }
+    }
+    return out;
+  }, [seed, grid]);
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox={`0 0 ${grid} ${grid}`}
+      shapeRendering="crispEdges"
+      className="block border border-[#c9a33a]/40"
+    >
+      <rect x="0" y="0" width={grid} height={grid} fill="#0a1330" />
+      {rects.map((r, i) => (
+        <rect key={i} x={r.x} y={r.y} width={1} height={1} fill={r.fill} />
+      ))}
+    </svg>
+  );
+}
+
+/* ── Visa stamp (EAS attestation) ─────────────────────────────────────────── */
+
+function VisaStamp({ title, uid }: { title: string; uid: string }) {
+  return (
+    <div className="flex-1 -rotate-2 rounded-full border-2 border-[#c9a33a]/40 bg-[#0d1f3d]/40 px-4 py-4 text-center">
+      <div className="text-xs font-mono uppercase tracking-[0.2em] text-[#c9a33a]">
+        {title}
+      </div>
+      <div className="mt-1.5 break-all text-xs font-mono text-muted-foreground/80">
+        {uid.slice(0, 12)}…{uid.slice(-8)}
+      </div>
+      <div className="mt-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
+        0 · not wired
+      </div>
+    </div>
+  );
+}
+
+/* ── The passport ─────────────────────────────────────────────────────────── */
 
 export function EmbassyApp(_props: { windowId: string; fileId?: string }) {
   const { address, isConnected, chainId } = useAccount();
@@ -34,143 +130,156 @@ export function EmbassyApp(_props: { windowId: string; fileId?: string }) {
   const { disconnect } = useDisconnect();
   const { data: ensName } = useEnsName({ address, chainId: mainnet.id });
 
-  // TBA derivation preview — tokenId 1 is a stand-in; nothing is minted yet.
-  const passport = useMemo(
-    () =>
-      derivePassport({
-        tokenContract: IMMERSION_TOKEN_CONTRACT,
-        tokenId: 1n,
-        ensName: ensName ?? null,
-        roles: [],
-      }),
-    [ensName],
-  );
-
-  const coreRoles = rolesByGroup('core');
-  const opsRoles = rolesByGroup('operations');
+  const seed = address ?? 'not-wired';
+  const passportNo = address
+    ? `${address.slice(2, 8).toUpperCase()}-${address.slice(-4).toUpperCase()}`
+    : 'NOT ISSUED';
 
   return (
-    <div className="h-full flex flex-col overflow-auto p-6">
-      <div className="flex items-center gap-3 mb-5">
-        <span className="px-2 py-1 rounded text-xs font-mono tracking-[0.2em] border border-primary/40 text-primary">
-          EMBASSY
-        </span>
-        <h2 className="text-xl font-semibold tracking-wide">Embassy</h2>
-      </div>
-
-      <p className="text-sm text-muted-foreground mb-6">
-        Sovereign identity &amp; presence — your on-chain passport and outpost.
-      </p>
-
-      {!isConnected ? (
-        <div className="glass-panel p-6 space-y-4">
-          <p className="text-sm text-muted-foreground">
-            The passport reads a connected wallet. Nothing here signs or mints on
-            its own — connect to surface chain, account, ENS, and the TBA
-            derivation.
-          </p>
-          <button
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium"
-            onClick={() => connectors[0] && connect({ connector: connectors[0] })}
-          >
-            <Link2 className="w-4 h-4" />
-            Connect wallet
-          </button>
-          <p className="text-xs text-muted-foreground/70">
-            Not wired until a wallet is presented — no fabricated address, mint or
-            role grant.
-          </p>
+    <AppLayout
+      code="EMBASSY"
+      title="Embassy"
+      thesis="the passport: identity, credentials, membership."
+      icon={Landmark}
+    >
+      <div className="overflow-hidden rounded-lg border-2 border-[#c9a33a]/50 bg-[#0a1330]">
+        {/* ── COVER ─────────────────────────────────────────────────────── */}
+        <div className="border-b border-[#c9a33a]/30 bg-[#0a1330] px-5 py-4 text-center">
+          <div className="mb-1.5 flex items-center justify-center gap-2">
+            <Landmark className="h-4 w-4 text-[#c9a33a]" />
+            <span className="text-xs font-mono tracking-[0.4em] text-[#c9a33a]">
+              IMMERSION OS
+            </span>
+            <Landmark className="h-4 w-4 text-[#c9a33a]" />
+          </div>
+          <h2 className="text-xl font-semibold tracking-[0.22em] text-[#e8dcc0]">
+            DIPLOMATIC PASSPORT
+          </h2>
+          <div className="mt-1.5 text-xs font-mono tracking-[0.3em] text-[#c9a33a]/70">
+            PASSPORT Nº {passportNo}
+          </div>
         </div>
-      ) : (
-        <div className="space-y-4">
-          {/* ── account ─────────────────────────────────────────────────── */}
-          <div className="glass-panel p-4 space-y-2 text-sm">
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Account</span>
-              <span className="font-mono">{shortAddr(address)}</span>
+
+        {/* ── HOLDER PAGE (PFP + ENS) ──────────────────────────────────── */}
+        <div className="space-y-3 px-5 py-4">
+          <div className="text-xs font-mono uppercase tracking-[0.3em] text-[#c9a33a]/80">
+            Holder
+          </div>
+
+          <div className="flex items-start gap-4">
+            <div className="shrink-0">
+              {isConnected ? (
+                <PixelAvatar seed={seed} size={96} />
+              ) : (
+                <div className="flex h-24 w-24 items-center justify-center rounded border border-dashed border-[#c9a33a]/40 px-2 text-center text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                  not wired
+                </div>
+              )}
+              <div className="mt-1 text-center text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
+                photo
+              </div>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Chain ID</span>
-              <span className="font-mono">{chainId ?? '—'}</span>
+
+            <div className="flex-1 space-y-2.5">
+              <div>
+                <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
+                  Holder / ENS
+                </div>
+                <div className="font-mono text-base text-[#e8dcc0]">{ensName ?? '— not wired'}</div>
+              </div>
+              <div>
+                <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
+                  Address
+                </div>
+                <div className="font-mono text-base text-[#e8dcc0]">{shortAddr(address)}</div>
+              </div>
+              <div>
+                <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground/60">
+                  Chain ID
+                </div>
+                <div className="font-mono text-base text-[#e8dcc0]">{chainId ?? '—'}</div>
+              </div>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">ENS</span>
-              <span className="font-mono">{ensName ?? '— (no ENS)'}</span>
-            </div>
+          </div>
+
+          <div className="flex items-center gap-2 text-sm font-mono text-muted-foreground">
+            <ShieldAlert className="h-4 w-4 shrink-0" />
+            <span>
+              minted: false · issued by the Immersion NFT (ERC-6551) · nothing
+              here is fabricated
+            </span>
+          </div>
+
+          {isConnected ? (
             <button
-              className="text-xs text-muted-foreground hover:text-foreground underline"
+              className="text-xs font-mono uppercase tracking-wider text-muted-foreground underline hover:text-[#c9a33a]"
               onClick={() => disconnect()}
             >
-              Disconnect
+              Disconnect wallet
             </button>
-          </div>
-
-          {/* ── TBA derivation preview ──────────────────────────────────── */}
-          <div className="glass-panel p-4 space-y-2 text-sm">
-            <div className="flex items-center gap-2">
-              <Stamp className="w-4 h-4 text-primary" />
-              <span className="font-medium">TBA derivation preview</span>
-              <span className="ml-auto text-xs text-muted-foreground/70 font-mono">
-                tokenId 1 · not minted
-              </span>
+          ) : (
+            <div className="space-y-2">
+              <button
+                className="inline-flex items-center gap-2 rounded bg-[#c9a33a] px-3 py-1.5 text-sm font-semibold text-[#0a1330]"
+                onClick={() => connectors[0] && connect({ connector: connectors[0] })}
+              >
+                <Link2 className="h-4 w-4" />
+                Present wallet
+              </button>
+              <p className="text-xs font-mono text-muted-foreground/70">
+                not wired until a wallet is presented — no address, ENS or
+                attestation is invented.
+              </p>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Token contract</span>
-              <span className="font-mono">{shortAddr(IMMERSION_TOKEN_CONTRACT)}</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Derived account</span>
-              <span className="font-mono">{shortAddr(passport.account ?? undefined)}</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Registry</span>
-              <span className="font-mono">{shortAddr(ERC6551_REGISTRY)}</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Implementation</span>
-              <span className="font-mono">{shortAddr(ERC6551_ACCOUNT_IMPLEMENTATION)}</span>
-            </div>
-            <div className="flex items-center gap-2 pt-1 text-xs">
-              <ShieldAlert className="w-4 h-4 text-muted-foreground shrink-0" />
-              <span className="text-muted-foreground">
-                Derived locally from the deployed collection. The account is not
-                created on-chain until the Immersion NFT is actually minted —
-                nothing is claimed as minted here.
-              </span>
-            </div>
-          </div>
-
-          {/* ── roles ───────────────────────────────────────────────────── */}
-          <div className="glass-panel p-4 space-y-3 text-sm">
-            <div className="flex items-center gap-2">
-              <Landmark className="w-4 h-4 text-primary" />
-              <span className="font-medium">Role matrix</span>
-              <span className="ml-auto text-xs text-muted-foreground/70 font-mono">
-                {ROLES.length} roles · proposed · not enforced
-              </span>
-            </div>
-            <p className="text-xs text-muted-foreground">
-              The designations below are the architecture brief&rsquo;s, held
-              locally — no roles contract enforces them on-chain yet, and this
-              desk does not imply otherwise.
-            </p>
-            <div className="grid grid-cols-2 gap-1.5">
-              {[...coreRoles, ...opsRoles].map((r) => (
-                <div key={r.id} className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary/50 shrink-0" />
-                  <span>{r.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span className="font-mono text-muted-foreground/60">minted: false</span>
-            <span>·</span>
-            <span>deployed ≠ minted — the chain reads real, nothing is invented.</span>
-          </div>
+          )}
         </div>
-      )}
-    </div>
+
+        {/* ── VISA STAMPS (EAS) ────────────────────────────────────────── */}
+        <div className="space-y-3 border-t border-[#c9a33a]/20 px-5 py-4">
+          <div className="text-xs font-mono uppercase tracking-[0.3em] text-[#c9a33a]/80">
+            Visa stamps — EAS
+          </div>
+          <div className="flex gap-4">
+            <VisaStamp title={PRESENCE_EVENT.title} uid={PRESENCE_EVENT_UID} />
+            <VisaStamp title={PRESENCE_MOMENT.title} uid={PRESENCE_MOMENT_UID} />
+          </div>
+          <p className="text-sm font-mono text-muted-foreground/70">
+            The two canon Presence schemas (Base Sepolia). Attestations render
+            here as stamps once a wallet presents — the count is never invented.
+          </p>
+        </div>
+
+        {/* ── DAO MEMBERSHIP ───────────────────────────────────────────── */}
+        <div className="space-y-3 border-t border-[#c9a33a]/20 px-5 py-4">
+          <div className="flex items-center gap-2">
+            <div className="text-xs font-mono uppercase tracking-[0.3em] text-[#c9a33a]/80">
+              DAO membership
+            </div>
+            <span className="text-xs font-mono text-muted-foreground/60">
+              {ROLES.length} roles · proposed · not enforced
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-1.5">
+            {[...rolesByGroup('core'), ...rolesByGroup('operations')].map((r) => (
+              <div key={r.id} className="flex items-center gap-2 text-sm font-mono">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#c9a33a]/50" />
+                <span className="text-[#e8dcc0]">{r.label}</span>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href={GOVERNANCE_LINKS.aragon}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-mono text-[#c9a33a] hover:underline"
+          >
+            <Stamp className="h-4 w-4" />
+            Governance — Aragon DAO {shortAddr(ARAGON_DAO_ADDRESS)}
+          </a>
+        </div>
+      </div>
+    </AppLayout>
   );
 }
