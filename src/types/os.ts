@@ -105,6 +105,10 @@ export interface SystemSettings {
   soundEnabled: boolean;
   volume: number;
   developerMode: boolean;
+  /** Nero shader tuning (NeuroNoise). */
+  neroSpeed: number;
+  neroBrightness: number;
+  neroContrast: number;
 }
 
 // Developer File System Node (with permissions)

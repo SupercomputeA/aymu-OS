@@ -142,7 +142,7 @@ export function EmbassyApp(_props: { windowId: string; fileId?: string }) {
       thesis="the passport: identity, credentials, membership."
       icon={Landmark}
     >
-      <div className="overflow-hidden rounded-lg border-2 border-[#c9a33a]/50 bg-[#0a1330]">
+      <div className="h-full overflow-auto rounded-lg border-2 border-[#c9a33a]/50 bg-[#0a1330]">
         {/* ── COVER ─────────────────────────────────────────────────────── */}
         <div className="border-b border-[#c9a33a]/30 bg-[#0a1330] px-5 py-4 text-center">
           <div className="mb-1.5 flex items-center justify-center gap-2">

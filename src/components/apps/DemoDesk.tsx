@@ -24,6 +24,7 @@ export interface DemoDeskSpec {
 export function DemoDesk({ spec }: { spec: DemoDeskSpec }) {
   return (
     <AppLayout code={spec.code} title={spec.title} thesis={spec.thesis} icon={spec.icon}>
+      <div className="flex h-full flex-col overflow-auto">
       {spec.items.length === 0 ? (
         <div className="glass-panel p-4 text-sm text-muted-foreground">
           No sub-apps listed — this desk is a single surface.
@@ -57,6 +58,7 @@ export function DemoDesk({ spec }: { spec: DemoDeskSpec }) {
           Not wired — demo surface. No live chain read, no data, no signature.
           Sub-apps are placeholders; on-chain wiring arrives in a later gate.
         </span>
+      </div>
       </div>
     </AppLayout>
   );

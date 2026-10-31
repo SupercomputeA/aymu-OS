@@ -16,6 +16,8 @@ import { useSystemStore } from '@/stores/systemStore';
 import { useWindowStore } from '@/stores/windowStore';
 import type { WallpaperType } from '@/types/os';
 import { Switch } from '@/components/ui/switch';
+import { AppLayout } from './AppLayout';
+import { Settings as SettingsIcon } from 'lucide-react';
 
 interface SettingsAppProps {
   windowId: string;
@@ -134,6 +136,45 @@ export function SettingsApp({ windowId }: SettingsAppProps) {
                 </div>
               </div>
 
+              {/* Nero Shader */}
+              {settings.wallpaper === 'nero' && (
+                <div className="mb-8">
+                  <h3 className="text-lg font-medium mb-2">Nero Shader</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Tune the nero wallpaper (speed · brightness · contrast)
+                  </p>
+                  <div className="space-y-5 max-w-md">
+                    <div>
+                      <div className="flex justify-between text-sm mb-1.5">
+                        <span className="text-muted-foreground">Speed</span>
+                        <span className="font-mono text-xs">{settings.neroSpeed.toFixed(2)}</span>
+                      </div>
+                      <input type="range" min={0} max={2} step={0.05} value={settings.neroSpeed}
+                        onChange={(e) => updateSettings({ neroSpeed: Number(e.target.value) })}
+                        className="w-full accent-[hsl(var(--primary))]" />
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-sm mb-1.5">
+                        <span className="text-muted-foreground">Brightness</span>
+                        <span className="font-mono text-xs">{settings.neroBrightness.toFixed(2)}</span>
+                      </div>
+                      <input type="range" min={0} max={0.3} step={0.01} value={settings.neroBrightness}
+                        onChange={(e) => updateSettings({ neroBrightness: Number(e.target.value) })}
+                        className="w-full accent-[hsl(var(--primary))]" />
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-sm mb-1.5">
+                        <span className="text-muted-foreground">Contrast</span>
+                        <span className="font-mono text-xs">{settings.neroContrast.toFixed(2)}</span>
+                      </div>
+                      <input type="range" min={0} max={0.5} step={0.01} value={settings.neroContrast}
+                        onChange={(e) => updateSettings({ neroContrast: Number(e.target.value) })}
+                        className="w-full accent-[hsl(var(--primary))]" />
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Developer Mode */}
               <div>
                 <h3 className="text-lg font-medium mb-2">Developer Mode</h3>
@@ -219,9 +260,10 @@ export function SettingsApp({ windowId }: SettingsAppProps) {
   };
 
   return (
-    <div className="h-full flex">
-      {/* Sidebar */}
-      <div className="w-56 border-r border-white/5 p-3" style={{ background: 'rgba(20, 20, 20, 0.6)' }}>
+    <AppLayout code="SYSTEM SETTINGS" title="System Settings" thesis="the controls: wallpaper, accent, and the nero shader." icon={SettingsIcon}>
+      <div className="flex h-full min-h-0">
+        {/* Sidebar */}
+        <div className="w-56 shrink-0 border-r border-white/5 p-3" style={{ background: 'rgba(20, 20, 20, 0.6)' }}>
         <div className="mb-4">
           <p className="text-xs text-muted-foreground font-medium mb-2 px-2">System</p>
           <div className="flex flex-col gap-0.5">
@@ -277,10 +319,11 @@ export function SettingsApp({ windowId }: SettingsAppProps) {
         )}
       </div>
 
-      {/* Content */}
-      <div className="flex-1 p-6 overflow-auto">
-        {renderContent()}
+        {/* Content */}
+        <div className="flex-1 overflow-auto p-4">
+          {renderContent()}
+        </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }

@@ -30,6 +30,9 @@ const defaultSettings: SystemSettings = {
   soundEnabled: true,
   volume: 0.5,
   developerMode: false,
+  neroSpeed: 0.5,
+  neroBrightness: 0.05,
+  neroContrast: 0.2,
 };
 
 const defaultUsers: User[] = [
@@ -61,6 +64,14 @@ export const useSystemStore = create<SystemStore>()(
     {
       name: 'immersion-os-system',
       partialize: (state) => ({ settings: state.settings }),
+      merge: (persistedState, currentState) => {
+        const p = (persistedState || {}) as Partial<SystemStore>;
+        return {
+          ...currentState,
+          ...p,
+          settings: { ...currentState.settings, ...(p.settings || {}) },
+        };
+      },
     }
   )
 );
