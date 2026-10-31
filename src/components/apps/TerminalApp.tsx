@@ -24,7 +24,7 @@ export function TerminalApp({ windowId }: TerminalAppProps) {
   const openWindow = useWindowStore((state) => state.openWindow);
 
   const [lines, setLines] = useState<TerminalLine[]>([
-    { type: 'output', content: 'Immersion OS terminal [v0.2.0]' },
+    { type: 'output', content: 'Immersion OS terminal [v1.2.0]' },
     { type: 'output', content: '' },
   ]);
   const [currentInput, setCurrentInput] = useState('');
@@ -219,7 +219,7 @@ export function TerminalApp({ windowId }: TerminalAppProps) {
         ];
 
         const sysInfo = [
-          'OS: Immersion OS v0.2.0',
+          'OS: Immersion OS v1.2.0',
           'Host: Browser Runtime',
           'Kernel: Web Engine',
           `Uptime: ${Math.floor(performance.now() / 1000)}s`,

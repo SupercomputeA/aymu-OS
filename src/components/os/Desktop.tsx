@@ -113,6 +113,24 @@ export function Desktop() {
         />
       )}
 
+      {/* Wallpaper branding — SUPERCOMPUTE wordmark + version, behind windows */}
+      <div className="pointer-events-none absolute left-24 top-10 z-0 select-none">
+        <div className="flex items-center gap-2.5">
+          <img
+            src="/supercompute-logo.png"
+            alt="Supercompute"
+            className="h-6 w-6 object-contain opacity-80"
+            draggable={false}
+          />
+          <span className="text-lg font-semibold tracking-[0.28em] text-[#e8dcc0]/85">
+            SUPERCOMPUTE
+          </span>
+        </div>
+        <div className="mt-1 pl-[34px] font-mono text-xs tracking-[0.2em] text-muted-foreground/70">
+          Immersion OS v1.2.0
+        </div>
+      </div>
+
       <TopBar />
 
       <div className="absolute inset-0 pt-7">

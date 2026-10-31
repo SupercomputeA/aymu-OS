@@ -174,7 +174,7 @@ export function SettingsApp({ windowId }: SettingsAppProps) {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between py-2 border-b border-border/50">
                   <span className="text-muted-foreground">System</span>
-                  <span>Immersion OS v0.2.0</span>
+                  <span>Immersion OS v1.2.0</span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-border/50">
                   <span className="text-muted-foreground">Kernel</span>
