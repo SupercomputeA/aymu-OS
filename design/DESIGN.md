@@ -11,7 +11,7 @@ one license.
 
 | Path | What it is |
 | --- | --- |
-| `design/tokens.json` | The single token reference — palette, semantic roles, accents, radius, type, spacing, elevation. Pull from it; never invent a value. |
+| `design/tokens.json` | The reference of record — palette, semantic roles, accents, radius, type, spacing, elevation. The code is canonical; pull from it, never invent a value. |
 | `src/components/ui/` | The shadcn/ui primitive set (48 components). |
 | `src/components/os/` | The OS chrome — `Desktop`, `Window`, `WindowManager`, `Dock`, `TopBar`, `BootScreen`, `LoginScreen`, `AppDrawer`, `NeroWallpaper`. |
 | `src/components/apps/` | The app surfaces — `EmbassyApp` (the Web3 passport), `SettingsApp`, `TerminalApp`, `FinderApp`, `BrowserApp`, `MusicPlayerApp`, `NotepadApp`, `CalculatorApp`, `AppStoreApp`, `AboutApp`, and more. |
@@ -42,8 +42,9 @@ accents; a new one is an RFC, not a quick add.
 
 ## Tokens
 
-`design/tokens.json` is the single source of truth — versioned, and its
-`"version"` field must track the software version bump (see `CONTRIBUTING.md`).
+`design/tokens.json` is the reference of record — the code is canonical and
+this mirrors it. Its `"version"` field must track the software version bump
+(see `CONTRIBUTING.md`).
 
 - **Color** — `palette` (6 locked hexes) + `semantic` (HSL roles:
   background/foreground/card/primary/secondary/muted/accent/destructive/border/
