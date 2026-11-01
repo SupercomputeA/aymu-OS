@@ -1,0 +1,9 @@
+# Immersion OS — Design Assets License
+
+The design assets of Immersion OS — design tokens (`design/tokens.json`), UI components, icons, and documentation — are licensed under the **Creative Commons Attribution-ShareAlike 4.0 International** license (CC BY-SA 4.0).
+
+Full text: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+In short: you may share and adapt the design assets for any purpose, provided you (a) give appropriate credit to Supercompute, and (b) distribute any adaptations under the same license.
+
+Code (source, build, tests) is licensed separately under Apache-2.0 — see `LICENSE.txt`.
