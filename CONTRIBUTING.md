@@ -21,10 +21,15 @@ The steel-vault identity is deliberately narrow. Two ground colors, one accent m
 - **Zero arbitrary uploads.** Avatar/art is procedural (pixel compiler, seeded from the address). No `.jpg` hot-linked for identity.
 - **"deployed ≠ minted", "zero ≠ unknown".** State is stated truthfully; a demo surface says "demo" and "not wired".
 
-## Grid, typography, states
+## Design tokens & grid
 
-- **Spacing** follows the existing Tailwind scale; no ad-hoc px. The dock/bar grid is uniform-left (no scattered x-offsets).
-- **Type**: hero title 24px / thesis + body 16px / field labels 12px. Micro-labels never below 12px.
+The complete token set lives in `design/tokens.json` — the single reference. Pull from it, never invent values.
+
+- **Color** — `palette` (6 locked hexes) + `semantic` (HSL roles: background/foreground/card/primary/secondary/muted/accent/destructive/border/input/ring) + `accents` (8 swatches).
+- **Radius** — one value, `0.5rem` (8px). No ad-hoc corners.
+- **Type scale** — hero 24px / title 20px / body 16px / secondary 14px / label 12px. Micro-labels never below 12px.
+- **Spacing** — Tailwind 4px grid (`0.25rem` base); no ad-hoc px. The dock/bar grid is uniform-left.
+- **Elevation** — glass (0.88 alpha + 12px blur) and dock (0.9 alpha) surfaces; see `--glass-*`/`--dock-*` in `index.css`.
 - **Accessibility (WCAG AA)**: brass-on-navy and cream-on-navy pass contrast; keep the CRT scanline + vignette overlay subtle so text stays legible. Accessible names (`title`/`aria-label`) on every interactive element are a target — currently a known gap on dock items.
 - **Component states**: default · hover · focus · active · disabled · "not wired" — the honest empty state is a first-class state, not an afterthought.
 
