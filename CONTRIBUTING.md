@@ -4,13 +4,15 @@ Immersion OS is **open design by default**: public assets, community feedback, o
 
 ## The locked palette (do not add hues)
 
-The steel-vault identity is deliberately narrow. Two ground colors, one accent metal, one text tone. No new hues without a public RFC that survives review.
+The steel-vault identity is deliberately narrow. Three grounds, two brass metals, one text tone — six locked hexes. No new hues without a public RFC that survives review.
 
 | Token | Hex | Role |
 |---|---|---|
 | `navy` | `#0a1330` | ground / background |
 | `slate` | `#0d1f3d` | surface / mid |
+| `steel` | `#1a2f4d` | elevated / secondary surface |
 | `brass` | `#c9a33a` | accent / metal |
+| `dark-brass` | `#8a6d1f` | accent · active / pressed |
 | `cream` | `#e8dcc0` | text / wordmark on dark |
 
 **Accent swatches** (the eight user-selectable accents, HSL): brass `40 45% 52%` · indigo `230 85% 55%` · cyan `190 85% 55%` · orange `25 95% 55%` · amber `45 95% 55%` · emerald `150 70% 50%` · pink `330 80% 65%` · purple `280 70% 60%`. These are the only accents; a new one is an RFC, not a quick add.
