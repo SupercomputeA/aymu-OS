@@ -4,7 +4,7 @@ Immersion OS is **open design by default**: public assets, community feedback, o
 
 ## The locked palette (do not add hues)
 
-The steel-vault identity is deliberately narrow. Three ground colors, one accent metal, one text tone. No new hues without a public RFC that survives review.
+The steel-vault identity is deliberately narrow. Two ground colors, one accent metal, one text tone. No new hues without a public RFC that survives review.
 
 | Token | Hex | Role |
 |---|---|---|
@@ -25,7 +25,7 @@ The steel-vault identity is deliberately narrow. Three ground colors, one accent
 
 - **Spacing** follows the existing Tailwind scale; no ad-hoc px. The dock/bar grid is uniform-left (no scattered x-offsets).
 - **Type**: hero title 24px / thesis + body 16px / field labels 12px. Micro-labels never below 12px.
-- **Accessibility (WCAG AA)**: brass-on-navy and cream-on-navy pass contrast; keep the CRT scanline + vignette overlay subtle so text stays legible. Every interactive element has a focus state and a `title`/`aria-label`.
+- **Accessibility (WCAG AA)**: brass-on-navy and cream-on-navy pass contrast; keep the CRT scanline + vignette overlay subtle so text stays legible. Accessible names (`title`/`aria-label`) on every interactive element are a target — currently a known gap on dock items.
 - **Component states**: default · hover · focus · active · disabled · "not wired" — the honest empty state is a first-class state, not an afterthought.
 
 ## How to contribute
@@ -33,7 +33,7 @@ The steel-vault identity is deliberately narrow. Three ground colors, one accent
 1. **Discuss first** — open a public issue or RFC for any visual change beyond a typo/fix. Wireframes and low-fi specs are welcome before high-fidelity work.
 2. **Fork/branch** — design changes go through a PR against `main`, same as code.
 3. **Reference the tokens** — pull from `design/tokens.json`, never hardcode a hex that isn't already in the locked set.
-4. **Tag the release** — a design change that ships in software `vX.Y.Z` carries the tag `vX.Y.Z-design`.
+4. **Tag the release** — a design change that ships in software `vX.Y.Z` carries the tag `vX.Y.Z-design`. Keep `design/tokens.json`'s `"version"` field in sync — bump it in the same commit as the software version bump.
 
 ## License
 
