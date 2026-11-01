@@ -39,4 +39,10 @@ describe('branding', () => {
     expect(all).toContain('SUPERCOMPUTE');
     expect(all).toContain('Immersion OS v1.5.0');
   });
+
+  it('keeps the design tokens version in sync with package.json', () => {
+    const pkg = JSON.parse(readFileSync(join(process.cwd(), 'package.json'), 'utf8'));
+    const tokens = JSON.parse(readFileSync(join(process.cwd(), 'design/tokens.json'), 'utf8'));
+    expect(tokens.version).toBe(pkg.version);
+  });
 });
