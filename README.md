@@ -11,6 +11,13 @@ lightweight Phase-1 shell (`SupercomputeA/immersion-webos`) deliberately did
 not yet build. This fork layers Immersion's identity on top: locked
 navy/brass steel-vault palette, CRT scanlines, and the sovereignty narrative.
 
+## Design source
+
+The forkable design source lives in [`design/DESIGN.md`](design/DESIGN.md) —
+locked tokens (`design/tokens.json`), the component library
+(`src/components/ui` · `os` · `apps`), and the honest-by-construction rules,
+under CC BY-SA 4.0. Fork code + tokens, not a `.fig`.
+
 ## What changed from upstream aymu-OS
 
 - **Rebrand** — boot, login, top bar, terminal, settings, about → Immersion OS.
